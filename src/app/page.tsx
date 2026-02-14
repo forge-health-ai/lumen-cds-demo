@@ -60,14 +60,14 @@ export default function LandingPage() {
         {/* Demo Options */}
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-10">
           {/* Without LUMEN */}
-          <Link href="/demo/without-lumen" className="group">
-            <div className="bg-gradient-to-b from-medical-red/20 to-medical-red/5 border-2 border-medical-red/50 hover:border-medical-red rounded-xl p-8 transition-all hover:scale-105">
+          <Link href="/demo/without-lumen" className="group h-full">
+            <div className="bg-gradient-to-b from-medical-red/20 to-medical-red/5 border-2 border-medical-red/50 hover:border-medical-red rounded-xl p-8 transition-all hover:scale-105 h-full flex flex-col items-center">
               <div className="w-16 h-16 bg-medical-red/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <AlertTriangle className="w-8 h-8 text-medical-red" />
               </div>
               <h2 className="text-2xl font-bold text-white mb-2">🚫 WITHOUT</h2>
               <h3 className="text-xl font-semibold text-medical-red mb-4">Governance</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm flex-grow">
                 AI output goes straight to the clinician. No scoring, no compliance, no audit trail.
               </p>
               <div className="mt-6 text-medical-red font-semibold group-hover:underline">
@@ -77,14 +77,14 @@ export default function LandingPage() {
           </Link>
           
           {/* With LUMEN */}
-          <Link href="/demo/with-lumen" className="group">
-            <div className="bg-gradient-to-b from-medical-green/20 to-medical-green/5 border-2 border-medical-green/50 hover:border-medical-green rounded-xl p-8 transition-all hover:scale-105">
+          <Link href="/demo/with-lumen" className="group h-full">
+            <div className="bg-gradient-to-b from-medical-green/20 to-medical-green/5 border-2 border-medical-green/50 hover:border-medical-green rounded-xl p-8 transition-all hover:scale-105 h-full flex flex-col items-center">
               <div className="w-16 h-16 bg-medical-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="w-8 h-8 text-medical-green" />
               </div>
               <h2 className="text-2xl font-bold text-white mb-2">🛡️ WITH</h2>
               <h3 className="text-xl font-semibold text-medical-green mb-4">LUMEN SDK</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm flex-grow">
                 AI output scored, validated against PHIPA, and documented in under 50ms.
               </p>
               <div className="mt-6 text-medical-green font-semibold group-hover:underline">
@@ -94,14 +94,14 @@ export default function LandingPage() {
           </Link>
           
           {/* Compare */}
-          <Link href="/demo/compare" className="group">
-            <div className="bg-gradient-to-b from-clinical-teal/20 to-clinical-teal/5 border-2 border-clinical-teal/50 hover:border-clinical-teal rounded-xl p-8 transition-all hover:scale-105">
+          <Link href="/demo/compare" className="group h-full">
+            <div className="bg-gradient-to-b from-clinical-teal/20 to-clinical-teal/5 border-2 border-clinical-teal/50 hover:border-clinical-teal rounded-xl p-8 transition-all hover:scale-105 h-full flex flex-col items-center">
               <div className="w-16 h-16 bg-clinical-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Scale className="w-8 h-8 text-clinical-teal" />
               </div>
               <h2 className="text-2xl font-bold text-white mb-2">⚖️</h2>
               <h3 className="text-xl font-semibold text-clinical-teal mb-4">Side-by-Side</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm flex-grow">
                 Same AI, same patient, different governance. Drag to compare side-by-side.
               </p>
               <div className="mt-6 text-clinical-teal font-semibold group-hover:underline">

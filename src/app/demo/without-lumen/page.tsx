@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { patient } from '@/data/patient';
 import { aiRecommendation } from '@/data/ai-recommendation';
