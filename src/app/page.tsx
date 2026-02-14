@@ -28,8 +28,11 @@ export default function LandingPage() {
             <span className="block text-clinical-teal">With Runtime Governance</span>
           </h1>
           
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-12">
-            Experience AI-Assisted Clinical Decision Support — With and Without Runtime Governance
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-4">
+            See what happens at the API layer — before the AI recommendation reaches your clinician
+          </p>
+          <p className="text-sm text-gray-500 max-w-xl mx-auto mb-12">
+            EHR-agnostic · No Epic/Cerner integration required · Evaluates in &lt;50ms · Audit-ready
           </p>
         </div>
         
@@ -90,11 +93,20 @@ export default function LandingPage() {
         {/* Scenario Info */}
         <div className="mt-16 bg-white/5 rounded-xl p-8 max-w-3xl mx-auto">
           <h3 className="text-xl font-semibold text-white mb-4">Demo Scenario</h3>
-          <p className="text-gray-300">
+          <p className="text-gray-300 mb-4">
             <strong className="text-clinical-teal">Emergency Department Sepsis Triage</strong> — 
             A 72-year-old patient presents with altered mental status, fever, and hypotension. 
             The AI recommends aggressive treatment. Should the clinician trust it?
           </p>
+          <div className="border-t border-white/10 pt-4 mt-4">
+            <h4 className="text-sm font-semibold text-gray-400 mb-2">Where LUMEN sits in the architecture</h4>
+            <p className="text-sm text-gray-400">
+              LUMEN is <strong className="text-gray-300">not</strong> a CDS system and does <strong className="text-gray-300">not</strong> integrate with your EHR. 
+              It operates at the <strong className="text-clinical-teal">API middleware layer</strong> — intercepting AI model output, 
+              scoring it against regulatory and clinical safety rules, and returning a governance-validated result. 
+              Your Epic/Cerner instance stays untouched. Your clinician&apos;s workflow doesn&apos;t change.
+            </p>
+          </div>
         </div>
       </div>
       

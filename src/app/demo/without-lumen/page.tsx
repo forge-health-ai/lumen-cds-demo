@@ -22,8 +22,8 @@ export default function WithoutLumenPage() {
       
       {/* Warning Banner */}
       <div className="bg-medical-red text-white px-6 py-2 flex items-center justify-center gap-2">
-        <span className="font-bold">⚠️ DEMO MODE:</span>
-        <span>This view shows AI recommendations WITHOUT runtime governance</span>
+        <span className="font-bold">⚠️ API LAYER VIEW:</span>
+        <span>AI model output goes directly to clinician — no governance, no audit trail</span>
         <Link href="/" className="ml-auto text-white/80 hover:text-white text-xs underline">← Back to LUMEN SDK</Link>
       </div>
       
