@@ -5,13 +5,6 @@ import Link from 'next/link';
 import { patient } from '@/data/patient';
 import { aiRecommendation } from '@/data/ai-recommendation';
 import { 
-  PatientBanner, 
-  VitalsCard, 
-  LabsCard, 
-  HistoryCard, 
-  SofaScoreCard 
-} from '@/components/PatientData';
-import { 
   AIRecommendationCard, 
   ConcernsCard, 
   MissingGovernanceCard 
@@ -26,14 +19,11 @@ import {
 } from '@/components/LumenGovernance';
 import type { LumenEvaluation } from '@/lib/lumen';
 import { evaluateClinicalDecision } from '@/lib/lumen';
-import { TriageButton } from '@/components/TriageButton';
-import { Zap, Loader2 } from 'lucide-react';
+import { Zap, Loader2, Thermometer, Heart, Activity } from 'lucide-react';
 
 export default function ComparePage() {
-  const [splitPosition, setSplitPosition] = useState(50);
   const [evaluation, setEvaluation] = useState<LumenEvaluation | null>(null);
   
-  // Generation states
   const [loading, setLoading] = useState(false);
   const [generated, setGenerated] = useState(false);
   const [showRecommendation, setShowRecommendation] = useState(false);
@@ -51,11 +41,9 @@ export default function ComparePage() {
       setGenerated(true);
       setShowRecommendation(true);
       
-      // Left side: concerns stagger
       setTimeout(() => setShowConcerns(true), 600);
       setTimeout(() => setShowMissing(true), 1200);
       
-      // Right side: LUMEN kicks in
       setTimeout(async () => {
         setShowLumen(true);
         setLumenLoading(true);
@@ -66,6 +54,8 @@ export default function ComparePage() {
       }, 800);
     }, 2200);
   }, []);
+  
+  const { vitals, labs } = patient;
   
   return (
     <main className="h-screen flex flex-col overflow-hidden">
@@ -102,7 +92,7 @@ export default function ComparePage() {
               )}
             </button>
           ) : (
-            <span className="text-sm text-gray-300">Drag the handle to compare. Same AI, same patient, different governance.</span>
+            <span className="text-sm text-gray-300">Same AI, same patient, different governance</span>
           )}
         </div>
         <div className="flex items-center gap-4">
@@ -113,141 +103,121 @@ export default function ComparePage() {
         </div>
       </div>
       
+      {/* Compact Patient Summary Bar */}
+      <div className="bg-clinical-navy-light text-white px-6 py-2 flex items-center gap-6 text-sm shrink-0 border-t border-white/10">
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-xs text-gray-400">{patient.mrn}</span>
+          <span className="font-bold">{patient.name}</span>
+          <span className="text-gray-400">({patient.age}{patient.sex.charAt(0)})</span>
+          <span className="bg-medical-amber text-clinical-navy px-2 py-0.5 rounded text-xs font-bold ml-1">
+            {patient.triageLevel}
+          </span>
+        </div>
+        <div className="flex items-center gap-4 text-xs text-gray-300">
+          <span>Temp <span className="text-medical-red font-mono font-bold">{vitals.temp}°C</span></span>
+          <span>HR <span className="text-medical-red font-mono font-bold">{vitals.hr}</span></span>
+          <span>BP <span className="text-medical-red font-mono font-bold">{vitals.bp}</span></span>
+          <span>SpO₂ <span className="text-medical-red font-mono font-bold">{vitals.spo2}%</span></span>
+          <span>GCS <span className="font-mono font-bold">{vitals.gcs}</span></span>
+          <span>SOFA <span className="text-medical-red font-mono font-bold">{patient.sofaScore.total}</span></span>
+          <span>Lactate <span className="text-medical-red font-mono font-bold">{labs.lactate}</span></span>
+        </div>
+        <div className="ml-auto text-xs text-gray-400">
+          <span className="text-medical-red font-semibold">⚠️ {patient.allergies.join('; ')}</span>
+        </div>
+      </div>
+      
       {/* Split Container */}
-      <div className="flex-1 flex relative overflow-hidden">
+      <div className="flex-1 flex overflow-hidden">
         {/* Left Side - WITHOUT LUMEN */}
-        <div 
-          className="h-full overflow-auto bg-ehr-bg border-r-4 border-medical-red"
-          style={{ width: `${splitPosition}%` }}
-        >
+        <div className="w-1/2 h-full overflow-auto bg-ehr-bg border-r-2 border-medical-red/30">
           {/* Warning Banner */}
           <div className="bg-medical-red text-white px-4 py-2 text-center text-sm font-semibold sticky top-0 z-10">
             🚫 WITHOUT LUMEN - No Governance
           </div>
           
-          <div className="p-4">
-            {/* Mini Patient Banner */}
-            <div className="bg-clinical-navy text-white px-4 py-3 rounded mb-4">
-              <div className="flex items-center gap-4 flex-wrap">
-                <span className="font-mono text-sm">{patient.mrn}</span>
-                <span className="font-bold">{patient.name}</span>
-                <span className="text-gray-300">({patient.age}{patient.sex.charAt(0)})</span>
-                <span className="bg-medical-amber text-clinical-navy px-2 py-0.5 rounded text-xs font-bold">
-                  {patient.triageLevel}
-                </span>
+          <div className="p-4 space-y-4">
+            {showRecommendation && (
+              <div className="animate-fadeIn">
+                <AIRecommendationCard recommendation={aiRecommendation} />
               </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <VitalsCard patient={patient} />
-              <LabsCard patient={patient} />
-              <SofaScoreCard patient={patient} />
-              <HistoryCard patient={patient} />
-              {showRecommendation && (
-                <div className="col-span-2 animate-fadeIn">
-                  <AIRecommendationCard recommendation={aiRecommendation} />
+            )}
+            {showConcerns && (
+              <div className="animate-fadeIn">
+                <ConcernsCard recommendation={aiRecommendation} />
+              </div>
+            )}
+            {showMissing && (
+              <div className="animate-fadeIn">
+                <MissingGovernanceCard recommendation={aiRecommendation} />
+              </div>
+            )}
+            {!generated && !loading && (
+              <div className="flex items-center justify-center h-48 text-gray-400 text-sm">
+                Click "Run AI Triage Companion" to generate
+              </div>
+            )}
+            {loading && (
+              <div className="flex items-center justify-center h-48">
+                <div className="text-center space-y-3">
+                  <Loader2 className="w-8 h-8 animate-spin text-medical-red mx-auto" />
+                  <p className="text-sm text-gray-500">Raw AI output incoming...</p>
                 </div>
-              )}
-              {showConcerns && (
-                <div className="col-span-2 animate-fadeIn">
-                  <ConcernsCard recommendation={aiRecommendation} />
-                </div>
-              )}
-              {showMissing && (
-                <div className="col-span-2 animate-fadeIn">
-                  <MissingGovernanceCard recommendation={aiRecommendation} />
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-        
-        {/* Drag Handle */}
-        <div 
-          className="absolute top-0 bottom-0 w-8 -ml-4 cursor-col-resize z-20 flex items-center justify-center"
-          style={{ left: `${splitPosition}%` }}
-          onMouseDown={(e) => {
-            const handleMouseMove = (e: MouseEvent) => {
-              const container = document.querySelector('.flex-1');
-              if (!container) return;
-              const rect = container.getBoundingClientRect();
-              const x = e.clientX - rect.left;
-              const percentage = (x / rect.width) * 100;
-              setSplitPosition(Math.max(20, Math.min(80, percentage)));
-            };
-            
-            const handleMouseUp = () => {
-              document.removeEventListener('mousemove', handleMouseMove);
-              document.removeEventListener('mouseup', handleMouseUp);
-            };
-            
-            document.addEventListener('mousemove', handleMouseMove);
-            document.addEventListener('mouseup', handleMouseUp);
-          }}
-        >
-          <div className="bg-clinical-teal text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-            ⇄
+              </div>
+            )}
           </div>
         </div>
         
         {/* Right Side - WITH LUMEN */}
-        <div 
-          className="h-full overflow-auto bg-ehr-bg border-l-4 border-medical-green"
-          style={{ width: `${100 - splitPosition}%` }}
-        >
+        <div className="w-1/2 h-full overflow-auto bg-ehr-bg border-l-2 border-medical-green/30">
           {/* LUMEN Active Banner */}
           <div className="bg-medical-green text-white px-4 py-2 text-center text-sm font-semibold sticky top-0 z-10">
             🛡️ WITH LUMEN - Runtime Governance Active
           </div>
           
-          <div className="p-4">
-            {/* Mini Patient Banner */}
-            <div className="bg-clinical-navy text-white px-4 py-3 rounded mb-4">
-              <div className="flex items-center gap-4 flex-wrap">
-                <span className="font-mono text-sm">{patient.mrn}</span>
-                <span className="font-bold">{patient.name}</span>
-                <span className="text-gray-300">({patient.age}{patient.sex.charAt(0)})</span>
-                <span className="bg-medical-amber text-clinical-navy px-2 py-0.5 rounded text-xs font-bold">
-                  {patient.triageLevel}
-                </span>
+          <div className="p-4 space-y-4">
+            {showRecommendation && (
+              <div className="animate-fadeIn">
+                <AIRecommendationCard recommendation={aiRecommendation} />
               </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <VitalsCard patient={patient} />
-              <LabsCard patient={patient} />
-              <SofaScoreCard patient={patient} />
-              <HistoryCard patient={patient} />
-              {showRecommendation && (
-                <div className="col-span-2 animate-fadeIn">
-                  <AIRecommendationCard recommendation={aiRecommendation} />
+            )}
+            {showLumen && (
+              <div className="animate-fadeIn">
+                <LumenScoreCard evaluation={evaluation} loading={lumenLoading} />
+              </div>
+            )}
+            {showGovernance && evaluation && (
+              <>
+                <div className="animate-fadeIn">
+                  <RiskRadar evaluation={evaluation} />
                 </div>
-              )}
-              {showLumen && (
-                <div className="col-span-2 animate-fadeIn">
-                  <LumenScoreCard evaluation={evaluation} loading={lumenLoading} />
+                <div className="animate-fadeIn">
+                  <PolicyPack evaluation={evaluation} />
                 </div>
-              )}
-              {showGovernance && evaluation && (
-                <>
-                  <div className="col-span-2 animate-fadeIn">
-                    <RiskRadar evaluation={evaluation} />
-                  </div>
-                  <div className="col-span-2 animate-fadeIn">
-                    <PolicyPack evaluation={evaluation} />
-                  </div>
-                  <div className="col-span-2 animate-fadeIn">
-                    <ValidatedConcerns evaluation={evaluation} />
-                  </div>
-                  <div className="col-span-2 animate-fadeIn">
-                    <AuditRecord evaluation={evaluation} />
-                  </div>
-                  <div className="col-span-2 animate-fadeIn">
-                    <GovernanceBanner />
-                  </div>
-                </>
-              )}
-            </div>
+                <div className="animate-fadeIn">
+                  <ValidatedConcerns evaluation={evaluation} />
+                </div>
+                <div className="animate-fadeIn">
+                  <AuditRecord evaluation={evaluation} />
+                </div>
+                <div className="animate-fadeIn">
+                  <GovernanceBanner />
+                </div>
+              </>
+            )}
+            {!generated && !loading && (
+              <div className="flex items-center justify-center h-48 text-gray-400 text-sm">
+                Click "Run AI Triage Companion" to generate
+              </div>
+            )}
+            {loading && (
+              <div className="flex items-center justify-center h-48">
+                <div className="text-center space-y-3">
+                  <Loader2 className="w-8 h-8 animate-spin text-medical-green mx-auto" />
+                  <p className="text-sm text-gray-500">AI output + LUMEN evaluation...</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
