@@ -63,13 +63,14 @@ export default function WithLumenPage() {
       <PatientBanner patient={patient} />
       
       {/* LUMEN Active Banner */}
-      <div className="bg-clinical-teal text-white px-6 py-2 flex items-center justify-between">
-        <Link href="/demo/without-lumen" className="text-white/70 hover:text-white text-xs underline">← View Without LUMEN</Link>
-        <div className="flex items-center gap-2">
-          <span className="font-bold">🛡️ LUMEN SDK AT API LAYER:</span>
-          <span>AI output scored and documented before reaching clinician. EHR untouched.</span>
+      <div className="bg-clinical-teal text-white px-4 sm:px-6 py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0">
+        <Link href="/demo/without-lumen" className="text-white/70 hover:text-white text-xs underline text-center sm:text-left">← View Without LUMEN</Link>
+        <div className="flex items-center justify-center gap-2 text-center">
+          <span className="font-bold text-xs sm:text-sm">🛡️ LUMEN SDK AT API LAYER:</span>
+          <span className="text-xs hidden md:inline">AI output scored and documented before reaching clinician. EHR untouched.</span>
+          <span className="text-xs sm:hidden">AI scored before reaching clinician.</span>
         </div>
-        <Link href="/demo/compare" className="text-white/70 hover:text-white text-xs underline">Side-by-Side →</Link>
+        <Link href="/demo/compare" className="text-white/70 hover:text-white text-xs underline text-center sm:text-right">Side-by-Side →</Link>
       </div>
       
       {/* Main Content */}

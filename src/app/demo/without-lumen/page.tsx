@@ -44,13 +44,14 @@ export default function WithoutLumenPage() {
       <PatientBanner patient={patient} />
       
       {/* Warning Banner */}
-      <div className="bg-medical-red text-white px-6 py-2 flex items-center justify-between">
-        <Link href="/demo/with-lumen" className="text-white/70 hover:text-white text-xs underline">← View With LUMEN</Link>
-        <div className="flex items-center gap-2">
-          <span className="font-bold">⚠️ API LAYER VIEW:</span>
-          <span>AI model output goes directly to clinician. No governance. No audit trail.</span>
+      <div className="bg-medical-red text-white px-4 sm:px-6 py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0">
+        <Link href="/demo/with-lumen" className="text-white/70 hover:text-white text-xs underline text-center sm:text-left">← View With LUMEN</Link>
+        <div className="flex items-center justify-center gap-2 text-center">
+          <span className="font-bold text-xs sm:text-sm">⚠️ API LAYER VIEW:</span>
+          <span className="text-xs hidden md:inline">AI model output goes directly to clinician. No governance. No audit trail.</span>
+          <span className="text-xs sm:hidden">No governance. No audit trail.</span>
         </div>
-        <Link href="/demo/compare" className="text-white/70 hover:text-white text-xs underline">Side-by-Side →</Link>
+        <Link href="/demo/compare" className="text-white/70 hover:text-white text-xs underline text-center sm:text-right">Side-by-Side →</Link>
       </div>
       
       {/* Main Content */}

@@ -26,37 +26,37 @@ export function PatientBanner({ patient }: PatientBannerProps) {
       </div>
       
       {/* Patient Banner */}
-      <div className="px-6 py-3 flex items-center gap-6 bg-clinical-navy">
+      <div className="px-4 sm:px-6 py-3 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-6 bg-clinical-navy">
         <div className="flex items-center gap-2">
-          <span className="text-gray-400 text-sm">MRN</span>
-          <span className="font-mono font-semibold">{patient.mrn}</span>
+          <span className="text-gray-400 text-xs sm:text-sm">MRN</span>
+          <span className="font-mono font-semibold text-sm sm:text-base">{patient.mrn}</span>
         </div>
-        
+
         <div className="flex items-center gap-2">
-          <span className="text-2xl font-bold">{patient.name}</span>
-          <span className="text-gray-300">({patient.age}{patient.sex.charAt(0)})</span>
+          <span className="text-xl sm:text-2xl font-bold">{patient.name}</span>
+          <span className="text-gray-300 text-sm">({patient.age}{patient.sex.charAt(0)})</span>
         </div>
-        
+
         <div className="flex items-center gap-2">
-          <span className="text-gray-400 text-sm">Blood Type</span>
-          <span className="font-mono font-semibold text-clinical-blue-light">{patient.bloodType}</span>
+          <span className="text-gray-400 text-xs sm:text-sm">Blood Type</span>
+          <span className="font-mono font-semibold text-clinical-blue-light text-sm sm:text-base">{patient.bloodType}</span>
         </div>
-        
-        <div className="flex items-center gap-2 text-medical-red">
+
+        <div className="flex items-center gap-2 text-medical-red flex-wrap">
           <span className="text-lg">⚠️</span>
-          <span className="font-semibold">ALLERGIES: {patient.allergies.join('; ')}</span>
+          <span className="font-semibold text-sm">ALLERGIES: {patient.allergies.join('; ')}</span>
         </div>
-        
-        <div className="ml-auto flex items-center gap-4">
-          <span className="bg-medical-amber text-clinical-navy px-3 py-1 rounded font-bold text-sm">
+
+        <div className="sm:ml-auto flex items-center gap-2 sm:gap-4">
+          <span className="bg-medical-amber text-clinical-navy px-2 sm:px-3 py-1 rounded font-bold text-xs sm:text-sm">
             {patient.triageLevel}
           </span>
-          <span className="text-sm text-gray-300">{patient.department}</span>
+          <span className="text-xs sm:text-sm text-gray-300">{patient.department}</span>
         </div>
       </div>
       
       {/* Care Team */}
-      <div className="px-6 py-1 bg-clinical-navy-light/50 text-xs flex gap-6 text-gray-300 border-t border-white/10">
+      <div className="px-4 sm:px-6 py-1 bg-clinical-navy-light/50 text-xs flex flex-wrap gap-2 sm:gap-6 text-gray-300 border-t border-white/10">
         <span><span className="text-gray-400">Attending:</span> {patient.attendingPhysician}</span>
         <span><span className="text-gray-400">Nurse:</span> {patient.nurse}</span>
         <span><span className="text-gray-400">Arrived:</span> {patient.arrivalTime}</span>

@@ -60,20 +60,21 @@ export function ArchitectureFlow() {
       : "scale-100";
   };
 
-  const popupBase = "absolute -top-10 left-1/2 animate-scorePopup";
+  const popupBase = "absolute -top-8 sm:-top-10 left-1/2 animate-scorePopup";
 
   return (
-    <div className="relative py-8">
-      {/* Main flow */}
-      <div className="flex items-center justify-center gap-0 text-sm flex-wrap">
+    <div className="relative py-4 sm:py-8">
+      {/* Main flow - horizontal scroll on mobile */}
+      <div className="overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible">
+        <div className="flex items-center justify-start sm:justify-center gap-0 text-sm min-w-max sm:min-w-0">
         {/* EHR */}
-        <div className={`${boxBase} bg-gray-700/50 border border-gray-600 text-gray-300 ${getBoxStyle(1)}`}>
+        <div className={`${boxBase} bg-gray-700/50 border border-gray-600 text-gray-300 text-xs sm:text-sm px-2 sm:px-4 py-2 sm:py-2.5 ${getBoxStyle(1)}`}>
           <span>🏥</span>
-          <span>Your EHR</span>
+          <span className="whitespace-nowrap">Your EHR</span>
           {/* Label popup */}
           {showEhrLabel && (
             <div className={popupBase}>
-              <div className="bg-white text-clinical-navy px-3 py-1.5 rounded-lg shadow-xl text-xs font-bold whitespace-nowrap">
+              <div className="bg-white text-clinical-navy px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg shadow-xl text-xs font-bold whitespace-nowrap">
                 Triage Data
               </div>
               <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-t-[5px] border-l-transparent border-r-transparent border-t-white" />
@@ -82,7 +83,7 @@ export function ArchitectureFlow() {
         </div>
 
         {/* Connector 1 */}
-        <div className="relative w-16 h-[2px] mx-1">
+        <div className="relative w-10 sm:w-16 h-[2px] mx-1 flex-shrink-0">
           <div className="absolute inset-0 bg-gray-600" />
           {stage >= 1 && stage > 0 && (
             <div 
@@ -95,13 +96,13 @@ export function ArchitectureFlow() {
         </div>
 
         {/* AI Model */}
-        <div className={`${boxBase} bg-clinical-blue/20 border border-clinical-blue/50 text-gray-300 ${getBoxStyle(2)}`}>
+        <div className={`${boxBase} bg-clinical-blue/20 border border-clinical-blue/50 text-gray-300 text-xs sm:text-sm px-2 sm:px-4 py-2 sm:py-2.5 ${getBoxStyle(2)}`}>
           <span>🤖</span>
-          <span>AI Model</span>
+          <span className="whitespace-nowrap">AI Model</span>
           {/* Label popup */}
           {showAiLabel && (
             <div className={popupBase}>
-              <div className="bg-white text-clinical-navy px-3 py-1.5 rounded-lg shadow-xl text-xs font-bold whitespace-nowrap">
+              <div className="bg-white text-clinical-navy px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg shadow-xl text-xs font-bold whitespace-nowrap">
                 Clinical Recommendation
               </div>
               <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-t-[5px] border-l-transparent border-r-transparent border-t-white" />
@@ -110,7 +111,7 @@ export function ArchitectureFlow() {
         </div>
 
         {/* Connector 2 */}
-        <div className="relative w-16 h-[2px] mx-1">
+        <div className="relative w-10 sm:w-16 h-[2px] mx-1 flex-shrink-0">
           <div className="absolute inset-0 bg-gray-600" />
           {stage >= 2 && (
             <div 
@@ -123,15 +124,15 @@ export function ArchitectureFlow() {
         </div>
 
         {/* LUMEN SDK */}
-        <div className={`${boxBase} bg-clinical-teal/20 border-2 border-clinical-teal text-clinical-teal font-bold ${getBoxStyle(3)}`}>
+        <div className={`${boxBase} bg-clinical-teal/20 border-2 border-clinical-teal text-clinical-teal font-bold text-xs sm:text-sm px-2 sm:px-4 py-2 sm:py-2.5 ${getBoxStyle(3)}`}>
           <span>🛡️</span>
-          <span>LUMEN SDK</span>
-          <span className="text-xs font-normal text-gray-400">&lt;50ms</span>
-          
+          <span className="whitespace-nowrap">LUMEN SDK</span>
+          <span className="text-xs font-normal text-gray-400 hidden sm:inline">&lt;50ms</span>
+
           {/* Score popup */}
           {showScore && (
             <div className={popupBase}>
-              <div className="bg-white text-clinical-navy px-3 py-1.5 rounded-lg shadow-xl text-sm font-bold whitespace-nowrap flex items-center gap-1.5">
+              <div className="bg-white text-clinical-navy px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg shadow-xl text-xs sm:text-sm font-bold whitespace-nowrap flex items-center gap-1 sm:gap-1.5">
                 <span className="text-clinical-teal">72</span>
                 <span className="text-gray-400 text-xs">/100</span>
                 <span className="text-medical-amber text-xs">REVIEW</span>
@@ -139,14 +140,14 @@ export function ArchitectureFlow() {
               <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-white" />
             </div>
           )}
-          
+
           {stage === 3 && (
             <div className="absolute inset-0 rounded-lg border-2 border-clinical-teal animate-ping opacity-30 pointer-events-none" />
           )}
         </div>
 
         {/* Connector 3 */}
-        <div className="relative w-16 h-[2px] mx-1">
+        <div className="relative w-10 sm:w-16 h-[2px] mx-1 flex-shrink-0">
           <div className="absolute inset-0 bg-gray-600" />
           {stage >= 3 && (
             <div 
@@ -159,15 +160,15 @@ export function ArchitectureFlow() {
         </div>
 
         {/* Clinician */}
-        <div className={`${boxBase} bg-medical-green/20 border border-medical-green/50 text-gray-300 ${getBoxStyle(4)}`}>
+        <div className={`${boxBase} bg-medical-green/20 border border-medical-green/50 text-gray-300 text-xs sm:text-sm px-2 sm:px-4 py-2 sm:py-2.5 ${getBoxStyle(4)}`}>
           <span>👨‍⚕️</span>
-          <span>Clinician</span>
-          
+          <span className="whitespace-nowrap">Clinician</span>
+
           {/* Defensible popup */}
           {showDefensible && (
             <div className={popupBase}>
-              <div className="bg-medical-green text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-bold whitespace-nowrap flex items-center gap-1">
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <div className="bg-medical-green text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg shadow-xl text-xs font-bold whitespace-nowrap flex items-center gap-1">
+                <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 DEFENSIBLE
@@ -176,10 +177,11 @@ export function ArchitectureFlow() {
             </div>
           )}
         </div>
+        </div>
       </div>
 
       {/* Subtitle */}
-      <div className="text-center mt-4">
+      <div className="text-center mt-4 px-4">
         <p className="text-xs text-gray-500">
           EHR-agnostic · No Epic/Cerner integration required · Evaluates in &lt;50ms · Audit-ready
         </p>

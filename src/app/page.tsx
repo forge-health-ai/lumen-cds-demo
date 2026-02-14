@@ -17,9 +17,9 @@ export default function LandingPage() {
       </header>
       
       {/* Hero */}
-      <div className="container mx-auto px-6 py-12 text-center">
-        <div className="mb-8">
-          <h1 className="text-5xl font-bold text-white mb-4">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 text-center">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             AI Triage Companion
             <span className="block text-clinical-teal">With Runtime Governance</span>
           </h1>
@@ -48,15 +48,15 @@ export default function LandingPage() {
         </div>
 
         {/* Demo Options */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto mb-8 sm:mb-10">
           {/* Without LUMEN */}
           <Link href="/demo/without-lumen" className="group h-full">
-            <div className="bg-gradient-to-b from-medical-red/20 to-medical-red/5 border-2 border-medical-red/50 hover:border-medical-red rounded-xl p-8 transition-all hover:scale-105 h-full flex flex-col items-center">
-              <div className="w-16 h-16 bg-medical-red/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <AlertTriangle className="w-8 h-8 text-medical-red" />
+            <div className="bg-gradient-to-b from-medical-red/20 to-medical-red/5 border-2 border-medical-red/50 hover:border-medical-red rounded-xl p-6 sm:p-8 transition-all hover:scale-105 h-full flex flex-col items-center">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-medical-red/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <AlertTriangle className="w-7 h-7 sm:w-8 sm:h-8 text-medical-red" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">🚫 WITHOUT</h2>
-              <h3 className="text-xl font-semibold text-medical-red mb-4">Governance</h3>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">🚫 WITHOUT</h2>
+              <h3 className="text-lg sm:text-xl font-semibold text-medical-red mb-4">Governance</h3>
               <p className="text-gray-400 text-sm flex-grow">
                 Raw AI output goes straight to the clinician. No scoring. No compliance. No audit trail.
               </p>
@@ -65,15 +65,15 @@ export default function LandingPage() {
               </div>
             </div>
           </Link>
-          
+
           {/* With LUMEN */}
           <Link href="/demo/with-lumen" className="group h-full">
-            <div className="bg-gradient-to-b from-medical-green/20 to-medical-green/5 border-2 border-medical-green/50 hover:border-medical-green rounded-xl p-8 transition-all hover:scale-105 h-full flex flex-col items-center">
-              <div className="w-16 h-16 bg-medical-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-8 h-8 text-medical-green" />
+            <div className="bg-gradient-to-b from-medical-green/20 to-medical-green/5 border-2 border-medical-green/50 hover:border-medical-green rounded-xl p-6 sm:p-8 transition-all hover:scale-105 h-full flex flex-col items-center">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-medical-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-7 h-7 sm:w-8 sm:h-8 text-medical-green" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">🛡️ WITH</h2>
-              <h3 className="text-xl font-semibold text-medical-green mb-4">LUMEN SDK</h3>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">🛡️ WITH</h2>
+              <h3 className="text-lg sm:text-xl font-semibold text-medical-green mb-4">LUMEN SDK</h3>
               <p className="text-gray-400 text-sm flex-grow">
                 AI output scored against PHIPA and documented in under 50ms.
               </p>
@@ -82,15 +82,15 @@ export default function LandingPage() {
               </div>
             </div>
           </Link>
-          
+
           {/* Compare */}
           <Link href="/demo/compare" className="group h-full">
-            <div className="bg-gradient-to-b from-clinical-teal/20 to-clinical-teal/5 border-2 border-clinical-teal/50 hover:border-clinical-teal rounded-xl p-8 transition-all hover:scale-105 h-full flex flex-col items-center">
-              <div className="w-16 h-16 bg-clinical-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Scale className="w-8 h-8 text-clinical-teal" />
+            <div className="bg-gradient-to-b from-clinical-teal/20 to-clinical-teal/5 border-2 border-clinical-teal/50 hover:border-clinical-teal rounded-xl p-6 sm:p-8 transition-all hover:scale-105 h-full flex flex-col items-center">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-clinical-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Scale className="w-7 h-7 sm:w-8 sm:h-8 text-clinical-teal" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">⚖️</h2>
-              <h3 className="text-xl font-semibold text-clinical-teal mb-4">Side-by-Side</h3>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">⚖️</h2>
+              <h3 className="text-lg sm:text-xl font-semibold text-clinical-teal mb-4">Side-by-Side</h3>
               <p className="text-gray-400 text-sm flex-grow">
                 Same AI, same patient, different governance. Drag to compare side-by-side.
               </p>
@@ -108,10 +108,10 @@ export default function LandingPage() {
       </div>
       
       {/* Footer Info */}
-      <div className="fixed bottom-8 right-8">
-        <div className="bg-white/10 backdrop-blur text-white px-4 py-2 rounded-lg text-sm">
+      <div className="fixed bottom-20 sm:bottom-8 right-4 sm:right-8">
+        <div className="bg-white/10 backdrop-blur text-white px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm">
           <span className="font-semibold text-clinical-teal">LUMEN SDK</span>
-          <span className="mx-2">|</span>
+          <span className="mx-1 sm:mx-2">|</span>
           <span>v1.0.4</span>
         </div>
       </div>

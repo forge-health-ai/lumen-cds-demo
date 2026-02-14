@@ -93,27 +93,27 @@ interface RiskRadarProps {
 
 export function RiskRadar({ evaluation }: RiskRadarProps) {
   if (!evaluation) return null;
-  
+
   const getScoreColor = (score: number, flagged?: boolean) => {
     if (flagged) return 'bg-medical-amber';
     if (score >= 8) return 'bg-medical-green';
     if (score >= 6) return 'bg-clinical-blue';
     return 'bg-medical-red';
   };
-  
+
   return (
     <div className="ehr-card bg-white rounded-lg p-4">
       <div className="flex items-center gap-2 mb-3">
         <Activity className="w-5 h-5 text-clinical-teal" />
         <h3 className="font-semibold text-clinical-navy">Risk Radar</h3>
       </div>
-      
+
       <div className="space-y-2">
         {evaluation.domains.map((domain) => (
           <div key={domain.name} className="flex items-center gap-2">
-            <span className="text-xs text-gray-600 w-32 truncate">{domain.name}</span>
-            <div className="flex-1 bg-gray-200 rounded-full h-2">
-              <div 
+            <span className="text-xs text-gray-600 w-24 sm:w-32 truncate">{domain.name}</span>
+            <div className="flex-1 bg-gray-200 rounded-full h-2 min-w-0">
+              <div
                 className={`h-2 rounded-full transition-all duration-500 ${getScoreColor(domain.score, domain.flagged)}`}
                 style={{ width: `${domain.score * 10}%` }}
               />
