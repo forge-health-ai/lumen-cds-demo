@@ -21,9 +21,13 @@ export default function WithoutLumenPage() {
       <PatientBanner patient={patient} />
       
       {/* Warning Banner */}
-      <div className="bg-medical-red text-white px-6 py-2 flex items-center justify-center gap-2">
-        <span className="font-bold">⚠️ API LAYER VIEW:</span>
-        <span>AI model output goes directly to clinician — no governance, no audit trail</span>
+      <div className="bg-medical-red text-white px-6 py-2 flex items-center justify-between">
+        <Link href="/demo/with-lumen" className="text-white/70 hover:text-white text-xs underline">← View With LUMEN</Link>
+        <div className="flex items-center gap-2">
+          <span className="font-bold">⚠️ API LAYER VIEW:</span>
+          <span>AI model output goes directly to clinician — no governance, no audit trail</span>
+        </div>
+        <Link href="/demo/compare" className="text-white/70 hover:text-white text-xs underline">Side-by-Side →</Link>
       </div>
       
       {/* Main Content */}

@@ -49,9 +49,13 @@ export default function WithLumenPage() {
       <PatientBanner patient={patient} />
       
       {/* LUMEN Active Banner */}
-      <div className="bg-clinical-teal text-white px-6 py-2 flex items-center justify-center gap-2">
-        <span className="font-bold">🛡️ LUMEN SDK AT API LAYER:</span>
-        <span>AI output scored, validated, and documented before reaching clinician — EHR untouched</span>
+      <div className="bg-clinical-teal text-white px-6 py-2 flex items-center justify-between">
+        <Link href="/demo/without-lumen" className="text-white/70 hover:text-white text-xs underline">← View Without LUMEN</Link>
+        <div className="flex items-center gap-2">
+          <span className="font-bold">🛡️ LUMEN SDK AT API LAYER:</span>
+          <span>AI output scored, validated, and documented before reaching clinician — EHR untouched</span>
+        </div>
+        <Link href="/demo/compare" className="text-white/70 hover:text-white text-xs underline">Side-by-Side →</Link>
       </div>
       
       {/* Main Content */}
