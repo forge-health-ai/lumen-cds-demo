@@ -6,30 +6,42 @@ type Stage = 0 | 1 | 2 | 3 | 4; // 0=idle, 1=EHR, 2=AI, 3=LUMEN, 4=Clinician
 
 export function ArchitectureFlow() {
   const [stage, setStage] = useState<Stage>(0);
+  const [showEhrLabel, setShowEhrLabel] = useState(false);
+  const [showAiLabel, setShowAiLabel] = useState(false);
   const [showScore, setShowScore] = useState(false);
-  const [showCheck, setShowCheck] = useState(false);
+  const [showDefensible, setShowDefensible] = useState(false);
   const [particleSet, setParticleSet] = useState(0);
 
   useEffect(() => {
     const runCycle = () => {
       setStage(1);
+      setShowEhrLabel(false);
+      setShowAiLabel(false);
       setShowScore(false);
-      setShowCheck(false);
+      setShowDefensible(false);
 
+      // EHR lights up, label pops
+      setTimeout(() => setShowEhrLabel(true), 400);
+      // AI Model lights up, label pops
       setTimeout(() => setStage(2), 1000);
+      setTimeout(() => setShowAiLabel(true), 1400);
+      // LUMEN lights up, score pops
       setTimeout(() => setStage(3), 2000);
       setTimeout(() => setShowScore(true), 2400);
+      // Clinician lights up, defensible pops
       setTimeout(() => setStage(4), 3200);
-      setTimeout(() => setShowCheck(true), 3600);
+      setTimeout(() => setShowDefensible(true), 3600);
+      // Reset
       setTimeout(() => {
         setStage(0);
+        setShowEhrLabel(false);
+        setShowAiLabel(false);
         setShowScore(false);
-        setShowCheck(false);
+        setShowDefensible(false);
         setParticleSet(p => p + 1);
       }, 5000);
     };
 
-    // Start first cycle after a short delay
     const initialDelay = setTimeout(runCycle, 800);
     const interval = setInterval(runCycle, 5800);
 
@@ -48,6 +60,8 @@ export function ArchitectureFlow() {
       : "scale-100";
   };
 
+  const popupBase = "absolute -top-10 left-1/2 animate-scorePopup";
+
   return (
     <div className="relative py-8">
       {/* Main flow */}
@@ -56,8 +70,14 @@ export function ArchitectureFlow() {
         <div className={`${boxBase} bg-gray-700/50 border border-gray-600 text-gray-300 ${getBoxStyle(1)}`}>
           <span>🏥</span>
           <span>Your EHR</span>
-          {stage >= 1 && stage > 0 && (
-            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-gray-400 rounded-full animate-ping" />
+          {/* Label popup */}
+          {showEhrLabel && (
+            <div className={popupBase}>
+              <div className="bg-white text-clinical-navy px-3 py-1.5 rounded-lg shadow-xl text-xs font-bold whitespace-nowrap">
+                Triage Data
+              </div>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-t-[5px] border-l-transparent border-r-transparent border-t-white" />
+            </div>
           )}
         </div>
 
@@ -68,9 +88,7 @@ export function ArchitectureFlow() {
             <div 
               key={`p1-${particleSet}`}
               className="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-clinical-blue rounded-full shadow-md shadow-clinical-blue/50"
-              style={{
-                animation: 'flowRight 0.8s ease-in-out forwards',
-              }}
+              style={{ animation: 'flowRight 0.8s ease-in-out forwards' }}
             />
           )}
           <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-500 text-xs">→</span>
@@ -80,8 +98,14 @@ export function ArchitectureFlow() {
         <div className={`${boxBase} bg-clinical-blue/20 border border-clinical-blue/50 text-gray-300 ${getBoxStyle(2)}`}>
           <span>🤖</span>
           <span>AI Model</span>
-          {stage === 2 && (
-            <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-clinical-blue rounded-full animate-pulse" />
+          {/* Label popup */}
+          {showAiLabel && (
+            <div className={popupBase}>
+              <div className="bg-white text-clinical-navy px-3 py-1.5 rounded-lg shadow-xl text-xs font-bold whitespace-nowrap">
+                Clinical Recommendation
+              </div>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-t-[5px] border-l-transparent border-r-transparent border-t-white" />
+            </div>
           )}
         </div>
 
@@ -92,9 +116,7 @@ export function ArchitectureFlow() {
             <div 
               key={`p2-${particleSet}`}
               className="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-clinical-teal rounded-full shadow-md shadow-clinical-teal/50"
-              style={{
-                animation: 'flowRight 0.8s ease-in-out forwards',
-              }}
+              style={{ animation: 'flowRight 0.8s ease-in-out forwards' }}
             />
           )}
           <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-500 text-xs">→</span>
@@ -108,7 +130,7 @@ export function ArchitectureFlow() {
           
           {/* Score popup */}
           {showScore && (
-            <div className="absolute -top-10 left-1/2 -translate-x-1/2 animate-scorePopup">
+            <div className={popupBase}>
               <div className="bg-white text-clinical-navy px-3 py-1.5 rounded-lg shadow-xl text-sm font-bold whitespace-nowrap flex items-center gap-1.5">
                 <span className="text-clinical-teal">72</span>
                 <span className="text-gray-400 text-xs">/100</span>
@@ -119,7 +141,7 @@ export function ArchitectureFlow() {
           )}
           
           {stage === 3 && (
-            <div className="absolute inset-0 rounded-lg border-2 border-clinical-teal animate-ping opacity-30" />
+            <div className="absolute inset-0 rounded-lg border-2 border-clinical-teal animate-ping opacity-30 pointer-events-none" />
           )}
         </div>
 
@@ -130,9 +152,7 @@ export function ArchitectureFlow() {
             <div 
               key={`p3-${particleSet}`}
               className="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-medical-green rounded-full shadow-md shadow-medical-green/50"
-              style={{
-                animation: 'flowRight 0.8s ease-in-out forwards',
-              }}
+              style={{ animation: 'flowRight 0.8s ease-in-out forwards' }}
             />
           )}
           <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-500 text-xs">→</span>
@@ -143,15 +163,16 @@ export function ArchitectureFlow() {
           <span>👨‍⚕️</span>
           <span>Clinician</span>
           
-          {/* Defensible check */}
-          {showCheck && (
-            <div className="animate-scorePopup">
-              <span className="text-medical-green text-xs font-bold flex items-center gap-1">
+          {/* Defensible popup */}
+          {showDefensible && (
+            <div className={popupBase}>
+              <div className="bg-medical-green text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-bold whitespace-nowrap flex items-center gap-1">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-                Defensible
-              </span>
+                DEFENSIBLE
+              </div>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-t-[5px] border-l-transparent border-r-transparent" style={{ borderTopColor: '#059669' }} />
             </div>
           )}
         </div>
