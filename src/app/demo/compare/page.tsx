@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { patient } from '@/data/patient';
 import { aiRecommendation } from '@/data/ai-recommendation';
 import { 
@@ -61,8 +62,11 @@ export default function ComparePage() {
         <div className="text-center">
           <span className="text-sm text-gray-300">Drag the handle to compare — same AI, same patient, different governance</span>
         </div>
-        <div className="font-mono text-sm">
-          {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+        <div className="flex items-center gap-4">
+          <span className="font-mono text-sm">
+            {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+          </span>
+          <Link href="/" className="text-white/60 hover:text-white text-xs underline">← Back</Link>
         </div>
       </div>
       

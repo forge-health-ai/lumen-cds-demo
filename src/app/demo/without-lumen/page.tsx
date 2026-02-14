@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { patient } from '@/data/patient';
 import { aiRecommendation } from '@/data/ai-recommendation';
 import { 
@@ -15,7 +16,7 @@ import {
 
 export default function WithoutLumenPage() {
   return (
-    <main className="min-h-screen bg-ehr-bg">
+    <main className="min-h-screen bg-ehr-bg pb-12">
       {/* Patient Banner */}
       <PatientBanner patient={patient} />
       
@@ -23,6 +24,7 @@ export default function WithoutLumenPage() {
       <div className="bg-medical-red text-white px-6 py-2 flex items-center justify-center gap-2">
         <span className="font-bold">⚠️ DEMO MODE:</span>
         <span>This view shows AI recommendations WITHOUT runtime governance</span>
+        <Link href="/" className="ml-auto text-white/80 hover:text-white text-xs underline">← Back to LUMEN SDK</Link>
       </div>
       
       {/* Main Content */}

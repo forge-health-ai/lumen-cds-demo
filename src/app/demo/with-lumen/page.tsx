@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { patient } from '@/data/patient';
 import { aiRecommendation } from '@/data/ai-recommendation';
 import { evaluateClinicalDecision, type LumenEvaluation } from '@/lib/lumen';
@@ -43,7 +44,7 @@ export default function WithLumenPage() {
   }, []);
   
   return (
-    <main className="min-h-screen bg-ehr-bg">
+    <main className="min-h-screen bg-ehr-bg pb-12">
       {/* Patient Banner */}
       <PatientBanner patient={patient} />
       
@@ -51,6 +52,7 @@ export default function WithLumenPage() {
       <div className="bg-clinical-teal text-white px-6 py-2 flex items-center justify-center gap-2">
         <span className="font-bold">🛡️ LUMEN SDK ACTIVE:</span>
         <span>Runtime governance, audit trail, and regulatory compliance enabled</span>
+        <Link href="/" className="ml-auto text-white/80 hover:text-white text-xs underline">← Back to LUMEN SDK</Link>
       </div>
       
       {/* Main Content */}
