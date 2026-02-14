@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import type { LumenEvaluation } from '@/lib/lumen';
-import { Shield, FileCheck, AlertCircle, CheckCircle, Activity, Lock } from 'lucide-react';
+import { Shield, FileCheck, AlertCircle, CheckCircle, Activity, Lock, AlertTriangle } from 'lucide-react';
 
 interface LumenScoreCardProps {
   evaluation: LumenEvaluation | null;
@@ -186,26 +186,60 @@ interface ValidatedConcernsProps {
 export function ValidatedConcerns({ evaluation }: ValidatedConcernsProps) {
   if (!evaluation) return null;
   
+  const gates = [
+    {
+      status: 'HOLD' as const,
+      label: 'Tier 2 Review Hold',
+      detail: 'Score below 80 requires senior clinician sign-off before execution'
+    },
+    {
+      status: 'PASS' as const,
+      label: 'Human Override Active',
+      detail: 'Attending physician must review and approve before orders are placed'
+    },
+    {
+      status: 'HOLD' as const,
+      label: 'Consent Verification',
+      detail: 'Patient consent for AI-assisted clinical triage not yet documented'
+    },
+    {
+      status: 'PASS' as const,
+      label: 'Citation Integrity',
+      detail: 'AI model provided 4 verifiable clinical references with DOI'
+    },
+    {
+      status: 'PASS' as const,
+      label: 'Audit Trail Generated',
+      detail: 'Full decision record with traceability created for regulatory review'
+    }
+  ];
+  
   const statusIcons = {
-    ADDRESSED: <CheckCircle className="w-4 h-4 text-medical-green" />,
-    FLAGGED: <AlertCircle className="w-4 h-4 text-medical-amber" />,
-    VALIDATED: <CheckCircle className="w-4 h-4 text-clinical-blue" />
+    PASS: <CheckCircle className="w-4 h-4 text-medical-green" />,
+    HOLD: <AlertCircle className="w-4 h-4 text-medical-amber" />
   };
   
+  const holdCount = gates.filter(g => g.status === 'HOLD').length;
+  
   return (
-    <div className="ehr-card bg-medical-green-light border border-medical-green rounded-lg p-4">
-      <div className="flex items-center gap-2 mb-3">
-        <FileCheck className="w-5 h-5 text-medical-green" />
-        <h3 className="font-bold text-medical-green">AI Recommendation Validated</h3>
+    <div className={`ehr-card border rounded-lg p-4 ${holdCount > 0 ? 'bg-medical-amber-light border-medical-amber' : 'bg-medical-green-light border-medical-green'}`}>
+      <div className="flex items-center gap-2 mb-1">
+        <Shield className="w-5 h-5 text-medical-amber" />
+        <h3 className="font-bold text-clinical-navy">Governance Gates</h3>
       </div>
+      <p className="text-xs text-gray-500 mb-3">{holdCount > 0 ? `${holdCount} gate${holdCount > 1 ? 's' : ''} requiring action before clinical execution` : 'All gates cleared'}</p>
       
       <div className="space-y-3">
-        {evaluation.validatedConcerns.map((concern, i) => (
+        {gates.map((gate, i) => (
           <div key={i} className="flex items-start gap-2 text-sm">
-            {statusIcons[concern.status]}
+            {statusIcons[gate.status]}
             <div className="flex-1">
-              <p className="text-gray-700">{concern.lumenNote}</p>
+              <span className="font-medium text-gray-800">{gate.label}</span>
+              <p className="text-xs text-gray-500 mt-0.5">{gate.detail}</p>
             </div>
+            <span className={`text-xs font-bold ${gate.status === 'PASS' ? 'text-medical-green' : 'text-medical-amber'}`}>
+              {gate.status === 'HOLD' ? 'ACTION' : 'CLEAR'}
+            </span>
           </div>
         ))}
       </div>
