@@ -250,7 +250,7 @@ interface HistoryCardProps {
 }
 
 export function HistoryCard({ patient }: HistoryCardProps) {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   
   return (
     <div className="ehr-card bg-white rounded-lg p-4">
