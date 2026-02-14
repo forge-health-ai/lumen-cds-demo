@@ -47,7 +47,7 @@ export default function LandingPage() {
               <h2 className="text-2xl font-bold text-white mb-2">🚫 WITHOUT</h2>
               <h3 className="text-xl font-semibold text-medical-red mb-4">Governance</h3>
               <p className="text-gray-400 text-sm">
-                See the risks of using AI recommendations without runtime governance, audit trails, or regulatory compliance.
+                AI output goes straight to the clinician. No scoring, no compliance, no audit trail.
               </p>
               <div className="mt-6 text-medical-red font-semibold group-hover:underline">
                 View Demo →
@@ -64,7 +64,7 @@ export default function LandingPage() {
               <h2 className="text-2xl font-bold text-white mb-2">🛡️ WITH</h2>
               <h3 className="text-xl font-semibold text-medical-green mb-4">LUMEN SDK</h3>
               <p className="text-gray-400 text-sm">
-                See how LUMEN provides scoring, validation, audit trails, and regulatory compliance in real-time.
+                AI output scored, validated against PHIPA, and documented in under 50ms.
               </p>
               <div className="mt-6 text-medical-green font-semibold group-hover:underline">
                 View Demo →
@@ -81,7 +81,7 @@ export default function LandingPage() {
               <h2 className="text-2xl font-bold text-white mb-2">⚖️</h2>
               <h3 className="text-xl font-semibold text-clinical-teal mb-4">Side-by-Side</h3>
               <p className="text-gray-400 text-sm">
-                Compare both scenarios simultaneously. Same AI, same patient, different governance.
+                Same AI, same patient, different governance. Drag to compare side-by-side.
               </p>
               <div className="mt-6 text-clinical-teal font-semibold group-hover:underline">
                 Compare →
@@ -91,7 +91,53 @@ export default function LandingPage() {
         </div>
         
         {/* Scenario Info */}
-        <div className="mt-16 bg-white/5 rounded-xl p-8 max-w-3xl mx-auto">
+        {/* Architecture Diagram */}
+        <div className="mt-16 bg-white/5 rounded-xl p-8 max-w-4xl mx-auto mb-8">
+          <h3 className="text-xl font-semibold text-white mb-6 text-center">Where LUMEN Sits</h3>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            {/* EHR */}
+            <div className="bg-gray-700/50 border border-gray-600 rounded-lg px-5 py-4 text-center min-w-[140px]">
+              <div className="text-2xl mb-1">🏥</div>
+              <div className="text-white font-semibold text-sm">Your EHR</div>
+              <div className="text-gray-400 text-xs">Epic · Cerner · Meditech</div>
+              <div className="text-gray-500 text-xs mt-1">Untouched</div>
+            </div>
+            
+            <div className="text-gray-500 text-xl">→</div>
+            
+            {/* AI Model */}
+            <div className="bg-clinical-blue/20 border border-clinical-blue/50 rounded-lg px-5 py-4 text-center min-w-[140px]">
+              <div className="text-2xl mb-1">🤖</div>
+              <div className="text-white font-semibold text-sm">AI Model</div>
+              <div className="text-gray-400 text-xs">CDS App · Ambient AI</div>
+              <div className="text-gray-500 text-xs mt-1">Produces output</div>
+            </div>
+            
+            <div className="text-gray-500 text-xl">→</div>
+            
+            {/* LUMEN */}
+            <div className="bg-clinical-teal/20 border-2 border-clinical-teal rounded-lg px-5 py-4 text-center min-w-[160px] relative">
+              <div className="absolute -top-2 -right-2 bg-clinical-teal text-white text-xs px-2 py-0.5 rounded-full font-bold">SDK</div>
+              <div className="text-2xl mb-1">🛡️</div>
+              <div className="text-clinical-teal font-bold text-sm">LUMEN</div>
+              <div className="text-gray-400 text-xs">Score · Validate · Document</div>
+              <div className="text-clinical-teal text-xs mt-1 font-semibold">&lt;50ms</div>
+            </div>
+            
+            <div className="text-gray-500 text-xl">→</div>
+            
+            {/* Clinician */}
+            <div className="bg-medical-green/20 border border-medical-green/50 rounded-lg px-5 py-4 text-center min-w-[140px]">
+              <div className="text-2xl mb-1">👨‍⚕️</div>
+              <div className="text-white font-semibold text-sm">Clinician</div>
+              <div className="text-gray-400 text-xs">Governed recommendation</div>
+              <div className="text-medical-green text-xs mt-1 font-semibold">Defensible record</div>
+            </div>
+          </div>
+          <p className="text-center text-gray-500 text-xs mt-4">LUMEN is embedded by the CDS vendor — the hospital&apos;s EHR and clinician workflow stay unchanged</p>
+        </div>
+
+        <div className="bg-white/5 rounded-xl p-8 max-w-3xl mx-auto">
           <h3 className="text-xl font-semibold text-white mb-4">Demo Scenario</h3>
           <p className="text-gray-300 mb-4">
             <strong className="text-clinical-teal">Emergency Department Sepsis Triage</strong> — 

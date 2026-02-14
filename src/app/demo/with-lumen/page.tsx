@@ -52,7 +52,6 @@ export default function WithLumenPage() {
       <div className="bg-clinical-teal text-white px-6 py-2 flex items-center justify-center gap-2">
         <span className="font-bold">🛡️ LUMEN SDK AT API LAYER:</span>
         <span>AI output scored, validated, and documented before reaching clinician — EHR untouched</span>
-        <Link href="/" className="ml-auto text-white/80 hover:text-white text-xs underline">← Back to LUMEN SDK</Link>
       </div>
       
       {/* Main Content */}

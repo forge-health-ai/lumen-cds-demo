@@ -17,12 +17,16 @@ export default function RootLayout({
         {children}
         
         {/* Synthetic Data Footer */}
-        <footer className="sticky bottom-0 left-0 right-0 bg-clinical-navy text-white text-xs py-2 px-4 text-center z-50">
-          <span className="font-bold text-medical-amber">⚠️ SYNTHETIC DATA</span>
-          <span className="mx-2">—</span>
-          <span>No real patient information. Demo by Forge Partners Inc.</span>
-          <span className="mx-2">|</span>
-          <span>© 2026 Forge Partners Inc.</span>
+        <footer className="sticky bottom-0 left-0 right-0 bg-clinical-navy text-white text-xs py-2 px-4 z-50 flex items-center justify-between">
+          <a href="/" className="text-white/60 hover:text-white underline">← Back to LUMEN SDK</a>
+          <div>
+            <span className="font-bold text-medical-amber">⚠️ SYNTHETIC DATA</span>
+            <span className="mx-2">—</span>
+            <span>No real patient information. Demo by FORGE Health</span>
+            <span className="mx-2">|</span>
+            <span>© 2026 Forge Partners Inc.</span>
+          </div>
+          <div className="w-24"></div>
         </footer>
       </body>
     </html>
