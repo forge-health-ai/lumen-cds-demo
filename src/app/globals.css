@@ -89,3 +89,44 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-out forwards;
 }
+
+/* Architecture flow: particle moving left to right */
+@keyframes flowRight {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 8px);
+    opacity: 0;
+  }
+}
+
+/* Score popup animation */
+@keyframes scorePopup {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 4px) scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(-50%, -2px) scale(1.05);
+  }
+  60% {
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.animate-scorePopup {
+  animation: scorePopup 0.4s ease-out forwards;
+}

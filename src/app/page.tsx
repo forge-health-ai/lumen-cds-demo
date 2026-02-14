@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Shield, AlertTriangle, Scale, Activity } from 'lucide-react';
+import { ArchitectureFlow } from '@/components/ArchitectureFlow';
 
 export default function LandingPage() {
   return (
@@ -41,20 +42,14 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <p className="text-xs text-gray-500 max-w-xl mx-auto mb-10">
-            EHR-agnostic · No Epic/Cerner integration required · Evaluates in &lt;50ms · Audit-ready
+          <p className="text-xs text-gray-500 max-w-xl mx-auto mb-4">
+            &nbsp;
           </p>
         </div>
         
-        {/* Architecture Flow — single horizontal line */}
-        <div className="flex items-center justify-center gap-2 mb-10 text-sm flex-wrap">
-          <span className="bg-gray-700/50 border border-gray-600 text-gray-300 px-3 py-1.5 rounded-lg">🏥 Your EHR</span>
-          <span className="text-gray-500">→</span>
-          <span className="bg-clinical-blue/20 border border-clinical-blue/50 text-gray-300 px-3 py-1.5 rounded-lg">🤖 AI Model</span>
-          <span className="text-gray-500">→</span>
-          <span className="bg-clinical-teal/20 border-2 border-clinical-teal text-clinical-teal font-bold px-3 py-1.5 rounded-lg">🛡️ LUMEN SDK <span className="text-xs font-normal text-gray-400">&lt;50ms</span></span>
-          <span className="text-gray-500">→</span>
-          <span className="bg-medical-green/20 border border-medical-green/50 text-gray-300 px-3 py-1.5 rounded-lg">👨‍⚕️ Clinician</span>
+        {/* Animated Architecture Flow */}
+        <div className="mb-10">
+          <ArchitectureFlow />
         </div>
 
         {/* Demo Options */}
