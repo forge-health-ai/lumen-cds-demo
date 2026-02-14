@@ -1,6 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/demo/without-lumen/page": "app/demo/without-lumen/page.js",
-  "/demo/with-lumen/page": "app/demo/with-lumen/page.js",
-  "/demo/compare/page": "app/demo/compare/page.js"
-}
