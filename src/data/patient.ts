@@ -67,11 +67,11 @@ export const patient: Patient = {
   bloodType: "A+",
   
   chiefComplaint: "Altered mental status, fever, hypotension",
-  triageLevel: "CTAS 2 — Emergent",
+  triageLevel: "CTAS 2 - Emergent",
   arrivalTime: "14:23",
   attendingPhysician: "Dr. Sarah Okafor",
   nurse: "RN James Whitfield",
-  department: "Emergency Department — Bay 7",
+  department: "Emergency Department - Bay 7",
   
   vitals: {
     timestamp: "14:31",
@@ -82,7 +82,7 @@ export const patient: Patient = {
     spo2: 91,
     gcs: 13,
     map: 64,
-    painScale: "Unable to assess — altered LOC"
+    painScale: "Unable to assess - altered LOC"
   },
   
   labs: {
@@ -97,7 +97,7 @@ export const patient: Patient = {
     glucose: 186,
     bloodCultures: "Pending (drawn at 14:35)",
     urinalysis: "Positive for leukocyte esterase, nitrites",
-    cxr: "Right lower lobe infiltrate — possible aspiration vs. pneumonia"
+    cxr: "Right lower lobe infiltrate - possible aspiration vs. pneumonia"
   },
   
   history: {
@@ -106,7 +106,7 @@ export const patient: Patient = {
       "Hypertension",
       "Chronic Kidney Disease Stage 3a",
       "Atrial Fibrillation (on Apixaban)",
-      "Previous UTI (3 months ago — E. coli, ciprofloxacin-resistant)"
+      "Previous UTI (3 months ago - E. coli, ciprofloxacin-resistant)"
     ],
     medications: [
       "Metformin 1000mg BID",
@@ -121,8 +121,8 @@ export const patient: Patient = {
     ],
     socialHistory: "Lives alone, independent ADLs, former smoker (quit 2015, 20 pack-years), no alcohol, retired teacher",
     recentVisits: [
-      { date: "2025-11-15", reason: "UTI — E. coli resistant to ciprofloxacin, treated with nitrofurantoin" },
-      { date: "2025-08-22", reason: "A1c check — stable at 7.8%" }
+      { date: "2025-11-15", reason: "UTI - E. coli resistant to ciprofloxacin, treated with nitrofurantoin" },
+      { date: "2025-08-22", reason: "A1c check - stable at 7.8%" }
     ]
   },
   

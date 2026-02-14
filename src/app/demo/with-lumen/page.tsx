@@ -67,7 +67,7 @@ export default function WithLumenPage() {
         <Link href="/demo/without-lumen" className="text-white/70 hover:text-white text-xs underline">← View Without LUMEN</Link>
         <div className="flex items-center gap-2">
           <span className="font-bold">🛡️ LUMEN SDK AT API LAYER:</span>
-          <span>AI output scored, validated, and documented before reaching clinician — EHR untouched</span>
+          <span>AI output scored and documented before reaching clinician. EHR untouched.</span>
         </div>
         <Link href="/demo/compare" className="text-white/70 hover:text-white text-xs underline">Side-by-Side →</Link>
       </div>

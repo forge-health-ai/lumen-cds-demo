@@ -102,7 +102,7 @@ export default function ComparePage() {
               )}
             </button>
           ) : (
-            <span className="text-sm text-gray-300">Drag the handle to compare — same AI, same patient, different governance</span>
+            <span className="text-sm text-gray-300">Drag the handle to compare. Same AI, same patient, different governance.</span>
           )}
         </div>
         <div className="flex items-center gap-4">
@@ -122,7 +122,7 @@ export default function ComparePage() {
         >
           {/* Warning Banner */}
           <div className="bg-medical-red text-white px-4 py-2 text-center text-sm font-semibold sticky top-0 z-10">
-            🚫 WITHOUT LUMEN — No Governance
+            🚫 WITHOUT LUMEN - No Governance
           </div>
           
           <div className="p-4">
@@ -197,7 +197,7 @@ export default function ComparePage() {
         >
           {/* LUMEN Active Banner */}
           <div className="bg-medical-green text-white px-4 py-2 text-center text-sm font-semibold sticky top-0 z-10">
-            🛡️ WITH LUMEN — Runtime Governance Active
+            🛡️ WITH LUMEN - Runtime Governance Active
           </div>
           
           <div className="p-4">

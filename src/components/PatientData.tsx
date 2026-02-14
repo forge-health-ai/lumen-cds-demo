@@ -18,7 +18,7 @@ export function PatientBanner({ patient }: PatientBannerProps) {
           <span className="font-semibold tracking-wide">Oak Valley Regional Medical Centre</span>
         </div>
         <div className="text-sm text-gray-300">
-          Emergency Department — Clinical Decision Support
+          Emergency Department - Clinical Decision Support
         </div>
         <div className="font-mono text-sm">
           {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}

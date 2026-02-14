@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'LUMEN CDS Demo — Clinical Decision Support with Runtime Governance',
+  title: 'LUMEN CDS Demo - Clinical Decision Support with Runtime Governance',
   description: 'Demonstration of AI-assisted clinical decision support with and without LUMEN SDK runtime governance',
 };
 

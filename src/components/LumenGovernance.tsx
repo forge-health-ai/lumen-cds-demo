@@ -265,7 +265,7 @@ export function AuditRecord({ evaluation }: AuditRecordProps) {
 export function GovernanceBanner() {
   return (
     <div className="mt-4 p-4 bg-medical-green text-white rounded-lg text-center font-semibold">
-      ✅ This AI recommendation has been scored, validated, and documented. The clinician has a DEFENSIBLE DECISION RECORD.
+      ✅ This AI recommendation has been scored and documented. The clinician has a DEFENSIBLE DECISION RECORD.
     </div>
   );
 }

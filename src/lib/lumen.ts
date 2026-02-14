@@ -43,7 +43,7 @@ export async function evaluateClinicalDecision(): Promise<LumenEvaluation> {
   return {
     score: 72,
     tier: "Tier 2: Operational",
-    verdict: "REVIEW — Enhanced Oversight Required",
+    verdict: "REVIEW: Enhanced Oversight Required",
     evaluationTime: "47ms",
     domains: [
       { name: "Clinical Safety", score: 8, flagged: false },
@@ -71,17 +71,17 @@ export async function evaluateClinicalDecision(): Promise<LumenEvaluation> {
     },
     validatedConcerns: [
       {
-        original: "CKD Stage 3a: Meropenem dosing may need renal adjustment — AI recommended standard dose",
+        original: "CKD Stage 3a: Meropenem dosing may need renal adjustment - AI recommended standard dose",
         status: "FLAGGED",
-        lumenNote: "LUMEN flagged renal adjustment needed — added to clinician review"
+        lumenNote: "Renal adjustment needed - added to clinician review"
       },
       {
-        original: "Lactate 4.1 is borderline for septic shock classification (threshold is 4.0) — is this truly shock or severe sepsis?",
+        original: "Lactate 4.1 is borderline for septic shock classification (threshold is 4.0) - is this truly shock or severe sepsis?",
         status: "FLAGGED",
-        lumenNote: "LUMEN noted marginal septic shock classification — Verdict: REVIEW"
+        lumenNote: "Marginal septic shock classification noted. Verdict: REVIEW"
       },
       {
-        original: "The AI weighted the UTI heavily but the CXR infiltrate could be the primary source — different antibiotic coverage may be needed",
+        original: "The AI weighted the UTI heavily but the CXR infiltrate could be the primary source - different antibiotic coverage may be needed",
         status: "VALIDATED",
         lumenNote: "Meropenem coverage validated against resistance pattern"
       },
@@ -91,7 +91,7 @@ export async function evaluateClinicalDecision(): Promise<LumenEvaluation> {
         lumenNote: "Apixaban-Meropenem INR risk flagged for pharmacist review"
       },
       {
-        original: "Patient is 72 with CKD — aggressive fluid resuscitation could cause volume overload",
+        original: "Patient is 72 with CKD - aggressive fluid resuscitation could cause volume overload",
         status: "FLAGGED",
         lumenNote: "Patient age + CKD flagged in Clinical Safety domain"
       }

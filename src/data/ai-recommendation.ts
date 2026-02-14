@@ -21,16 +21,16 @@ export const aiRecommendation: AIRecommendation = {
   timestamp: "14:52",
   model: "ClinicalBERT-v3.2 (fine-tuned on sepsis cohort)",
   
-  primaryRecommendation: "INITIATE SEPSIS BUNDLE — Probable Septic Shock",
+  primaryRecommendation: "INITIATE SEPSIS BUNDLE - Probable Septic Shock",
   confidenceScore: 0.87,
   
   reasoning: [
-    "qSOFA score: 3/3 (altered mentation, SBP ≤100, RR ≥22) — meets sepsis screening criteria",
-    "SOFA score: 10 — indicates significant multi-organ dysfunction",
+    "qSOFA score: 3/3 (altered mentation, SBP ≤100, RR ≥22) - meets sepsis screening criteria",
+    "SOFA score: 10 - indicates significant multi-organ dysfunction",
     "Lactate 4.1 mmol/L (>4.0 threshold for septic shock per Sepsis-3 definition)",
-    "Procalcitonin 2.4 ng/mL — strongly suggests bacterial infection",
+    "Procalcitonin 2.4 ng/mL - strongly suggests bacterial infection",
     "Likely source: Urinary tract (positive UA) with possible secondary pneumonia (RLL infiltrate)",
-    "Previous cipro-resistant E. coli — empiric coverage must account for resistance pattern"
+    "Previous cipro-resistant E. coli - empiric coverage must account for resistance pattern"
   ],
   
   recommendedActions: [
@@ -51,7 +51,7 @@ export const aiRecommendation: AIRecommendation = {
     },
     {
       priority: "URGENT",
-      action: "ICU admission — continuous hemodynamic monitoring",
+      action: "ICU admission - continuous hemodynamic monitoring",
       rationale: "SOFA ≥10 with vasopressor requirement meets ICU admission criteria"
     },
     {
@@ -74,10 +74,10 @@ export const aiRecommendation: AIRecommendation = {
   ],
 
   concerns: [
-    "CKD Stage 3a: Meropenem dosing may need renal adjustment — AI recommended standard dose",
-    "Lactate 4.1 is borderline for septic shock classification (threshold is 4.0) — is this truly shock or severe sepsis?",
-    "The AI weighted the UTI heavily but the CXR infiltrate could be the primary source — different antibiotic coverage may be needed",
+    "CKD Stage 3a: Meropenem dosing may need renal adjustment - AI recommended standard dose",
+    "Lactate 4.1 is borderline for septic shock classification (threshold is 4.0) - is this truly shock or severe sepsis?",
+    "The AI weighted the UTI heavily but the CXR infiltrate could be the primary source - different antibiotic coverage may be needed",
     "No mention of the Apixaban-Meropenem interaction (Meropenem can increase INR further)",
-    "Patient is 72 with CKD — aggressive fluid resuscitation could cause volume overload"
+    "Patient is 72 with CKD - aggressive fluid resuscitation could cause volume overload"
   ]
 };

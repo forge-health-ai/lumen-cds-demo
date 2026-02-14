@@ -48,7 +48,7 @@ export default function WithoutLumenPage() {
         <Link href="/demo/with-lumen" className="text-white/70 hover:text-white text-xs underline">← View With LUMEN</Link>
         <div className="flex items-center gap-2">
           <span className="font-bold">⚠️ API LAYER VIEW:</span>
-          <span>AI model output goes directly to clinician — no governance, no audit trail</span>
+          <span>AI model output goes directly to clinician. No governance. No audit trail.</span>
         </div>
         <Link href="/demo/compare" className="text-white/70 hover:text-white text-xs underline">Side-by-Side →</Link>
       </div>

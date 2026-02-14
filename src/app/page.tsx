@@ -30,14 +30,14 @@ export default function LandingPage() {
           </h1>
           
           <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-6">
-            See what happens at the API layer — before the AI recommendation reaches your clinician.
+            Run the AI. See the score. Know the decision is defensible.
           </p>
           
           {/* Use Case Callout */}
           <div className="inline-block bg-white/5 border border-white/10 rounded-lg px-6 py-4 mb-6 max-w-2xl">
             <div className="text-xs font-bold text-clinical-teal uppercase tracking-widest mb-2">Use Case</div>
             <p className="text-gray-300 text-sm">
-              A 72-year-old patient presents to the ED with altered mental status, fever, and hypotension. 
+              A 72-year-old patient presents to the ED with altered mental status, fever and hypotension.
               SOFA score: 10. The AI recommends an aggressive sepsis bundle. Should the clinician trust it?
             </p>
           </div>
@@ -63,7 +63,7 @@ export default function LandingPage() {
               <h2 className="text-2xl font-bold text-white mb-2">🚫 WITHOUT</h2>
               <h3 className="text-xl font-semibold text-medical-red mb-4">Governance</h3>
               <p className="text-gray-400 text-sm flex-grow">
-                AI output goes straight to the clinician. No scoring, no compliance, no audit trail.
+                Raw AI output goes straight to the clinician. No scoring. No compliance. No audit trail.
               </p>
               <div className="mt-6 text-medical-red font-semibold group-hover:underline">
                 View Demo →
@@ -80,7 +80,7 @@ export default function LandingPage() {
               <h2 className="text-2xl font-bold text-white mb-2">🛡️ WITH</h2>
               <h3 className="text-xl font-semibold text-medical-green mb-4">LUMEN SDK</h3>
               <p className="text-gray-400 text-sm flex-grow">
-                AI output scored, validated against PHIPA, and documented in under 50ms.
+                AI output scored against PHIPA and documented in under 50ms.
               </p>
               <div className="mt-6 text-medical-green font-semibold group-hover:underline">
                 View Demo →
@@ -108,7 +108,7 @@ export default function LandingPage() {
 
         {/* One-liner positioning */}
         <p className="text-xs text-gray-500 max-w-2xl mx-auto">
-          LUMEN is not a CDS system. It&apos;s an API middleware SDK embedded by the CDS vendor — your EHR and clinician workflow stay unchanged.
+          LUMEN is not a CDS system. It&apos;s an API middleware SDK embedded by the CDS vendor. Your EHR and clinician workflow stay untouched.
         </p>
       </div>
       

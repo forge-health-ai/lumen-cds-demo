@@ -53,7 +53,7 @@ export function TriageButton({ onGenerate, loading, generated }: TriageButtonPro
         <div className="mt-4 space-y-2">
           <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
             <div className="w-2 h-2 bg-clinical-blue rounded-full animate-pulse" />
-            <span>ClinicalBERT-v3.2 processing vitals, labs, and history...</span>
+            <span>ClinicalBERT-v3.2 processing vitals, labs and history...</span>
           </div>
         </div>
       )}
