@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Shield, AlertTriangle, Scale, Activity } from 'lucide-react';
+import { Shield, AlertTriangle, Scale } from 'lucide-react';
 import { ArchitectureFlow } from '@/components/ArchitectureFlow';
 
 export default function LandingPage() {
@@ -19,11 +19,6 @@ export default function LandingPage() {
       {/* Hero */}
       <div className="container mx-auto px-6 py-12 text-center">
         <div className="mb-8">
-          <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full mb-6">
-            <Activity className="w-4 h-4" />
-            <span className="text-sm">Emergency Department Sepsis Triage Scenario</span>
-          </div>
-          
           <h1 className="text-5xl font-bold text-white mb-4">
             AI Triage Companion
             <span className="block text-clinical-teal">With Runtime Governance</span>
@@ -35,7 +30,7 @@ export default function LandingPage() {
           
           {/* Use Case Callout */}
           <div className="inline-block bg-white/5 border border-white/10 rounded-lg px-6 py-4 mb-6 max-w-2xl">
-            <div className="text-xs font-bold text-clinical-teal uppercase tracking-widest mb-2">Use Case</div>
+            <div className="text-xs font-bold text-clinical-teal uppercase tracking-widest mb-2">ED Sepsis Triage Use Case</div>
             <p className="text-gray-300 text-sm">
               A 72-year-old patient presents to the ED with altered mental status, fever and hypotension.
               SOFA score: 10. The AI recommends an aggressive sepsis bundle. Should the clinician trust it?
