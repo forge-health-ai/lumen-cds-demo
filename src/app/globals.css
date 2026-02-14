@@ -73,3 +73,19 @@ body {
 .pulse-critical {
   animation: pulse-red 2s ease-in-out infinite;
 }
+
+/* Fade in animation for generated content */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}

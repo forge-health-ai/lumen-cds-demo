@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { patient } from '@/data/patient';
 import { aiRecommendation } from '@/data/ai-recommendation';
@@ -15,8 +16,28 @@ import {
   ConcernsCard, 
   MissingGovernanceCard 
 } from '@/components/AIRecommendation';
+import { TriageButton } from '@/components/TriageButton';
 
 export default function WithoutLumenPage() {
+  const [generated, setGenerated] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showRecommendation, setShowRecommendation] = useState(false);
+  const [showConcerns, setShowConcerns] = useState(false);
+  const [showMissing, setShowMissing] = useState(false);
+  
+  const handleGenerate = useCallback(() => {
+    setLoading(true);
+    // Simulate AI inference time
+    setTimeout(() => {
+      setLoading(false);
+      setGenerated(true);
+      setShowRecommendation(true);
+      // Stagger the concern cards
+      setTimeout(() => setShowConcerns(true), 600);
+      setTimeout(() => setShowMissing(true), 1200);
+    }, 2200);
+  }, []);
+  
   return (
     <main className="min-h-screen bg-ehr-bg pb-12">
       {/* Patient Banner */}
@@ -45,13 +66,28 @@ export default function WithoutLumenPage() {
           
           {/* Column 2: AI Recommendation (40%) */}
           <div className="col-span-12 lg:col-span-5 xl:col-span-5">
-            <AIRecommendationCard recommendation={aiRecommendation} />
+            {!generated && (
+              <TriageButton onGenerate={handleGenerate} loading={loading} generated={false} />
+            )}
+            {showRecommendation && (
+              <div className="animate-fadeIn">
+                <AIRecommendationCard recommendation={aiRecommendation} />
+              </div>
+            )}
           </div>
           
           {/* Column 3: The Problem — NO GOVERNANCE (30%) */}
           <div className="col-span-12 lg:col-span-3 xl:col-span-4 space-y-4">
-            <ConcernsCard recommendation={aiRecommendation} />
-            <MissingGovernanceCard recommendation={aiRecommendation} />
+            {showConcerns && (
+              <div className="animate-fadeIn">
+                <ConcernsCard recommendation={aiRecommendation} />
+              </div>
+            )}
+            {showMissing && (
+              <div className="animate-fadeIn">
+                <MissingGovernanceCard recommendation={aiRecommendation} />
+              </div>
+            )}
           </div>
         </div>
       </div>

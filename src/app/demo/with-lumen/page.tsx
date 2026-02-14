@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { patient } from '@/data/patient';
 import { aiRecommendation } from '@/data/ai-recommendation';
@@ -21,26 +21,40 @@ import {
   AuditRecord,
   GovernanceBanner
 } from '@/components/LumenGovernance';
+import { TriageButton } from '@/components/TriageButton';
 
 export default function WithLumenPage() {
   const [evaluation, setEvaluation] = useState<LumenEvaluation | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [generated, setGenerated] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showRecommendation, setShowRecommendation] = useState(false);
+  const [showLumen, setShowLumen] = useState(false);
+  const [lumenLoading, setLumenLoading] = useState(false);
+  const [showGovernance, setShowGovernance] = useState(false);
   
-  useEffect(() => {
-    const fetchEvaluation = async () => {
-      try {
-        setLoading(true);
+  const handleGenerate = useCallback(async () => {
+    setLoading(true);
+    
+    // Simulate AI inference
+    setTimeout(async () => {
+      setLoading(false);
+      setGenerated(true);
+      setShowRecommendation(true);
+      
+      // After AI recommendation appears, trigger LUMEN evaluation
+      setTimeout(async () => {
+        setShowLumen(true);
+        setLumenLoading(true);
+        
+        // LUMEN evaluates the AI output
         const result = await evaluateClinicalDecision();
         setEvaluation(result);
-      } catch (err) {
-        setError('Failed to load LUMEN evaluation');
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchEvaluation();
+        setLumenLoading(false);
+        
+        // Stagger governance panels
+        setTimeout(() => setShowGovernance(true), 800);
+      }, 800);
+    }, 2200);
   }, []);
   
   return (
@@ -71,17 +85,42 @@ export default function WithLumenPage() {
           
           {/* Column 2: AI Recommendation (40%) */}
           <div className="col-span-12 lg:col-span-5 xl:col-span-5">
-            <AIRecommendationCard recommendation={aiRecommendation} />
+            {!generated && (
+              <TriageButton onGenerate={handleGenerate} loading={loading} generated={false} />
+            )}
+            {showRecommendation && (
+              <div className="animate-fadeIn">
+                <AIRecommendationCard recommendation={aiRecommendation} />
+              </div>
+            )}
           </div>
           
           {/* Column 3: LUMEN Governance Layer (30%) */}
           <div className="col-span-12 lg:col-span-3 xl:col-span-4 space-y-4">
-            <LumenScoreCard evaluation={evaluation} loading={loading} />
-            <RiskRadar evaluation={evaluation} />
-            <PolicyPack evaluation={evaluation} />
-            <ValidatedConcerns evaluation={evaluation} />
-            <AuditRecord evaluation={evaluation} />
-            <GovernanceBanner />
+            {showLumen && (
+              <div className="animate-fadeIn">
+                <LumenScoreCard evaluation={evaluation} loading={lumenLoading} />
+              </div>
+            )}
+            {showGovernance && evaluation && (
+              <>
+                <div className="animate-fadeIn">
+                  <RiskRadar evaluation={evaluation} />
+                </div>
+                <div className="animate-fadeIn" style={{ animationDelay: '200ms' }}>
+                  <PolicyPack evaluation={evaluation} />
+                </div>
+                <div className="animate-fadeIn" style={{ animationDelay: '400ms' }}>
+                  <ValidatedConcerns evaluation={evaluation} />
+                </div>
+                <div className="animate-fadeIn" style={{ animationDelay: '600ms' }}>
+                  <AuditRecord evaluation={evaluation} />
+                </div>
+                <div className="animate-fadeIn" style={{ animationDelay: '800ms' }}>
+                  <GovernanceBanner />
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

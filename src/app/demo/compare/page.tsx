@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { patient } from '@/data/patient';
 import { aiRecommendation } from '@/data/ai-recommendation';
@@ -26,30 +26,46 @@ import {
 } from '@/components/LumenGovernance';
 import type { LumenEvaluation } from '@/lib/lumen';
 import { evaluateClinicalDecision } from '@/lib/lumen';
-import { useEffect } from 'react';
+import { TriageButton } from '@/components/TriageButton';
+import { Zap, Loader2 } from 'lucide-react';
 
 export default function ComparePage() {
   const [splitPosition, setSplitPosition] = useState(50);
   const [evaluation, setEvaluation] = useState<LumenEvaluation | null>(null);
-  const [loading, setLoading] = useState(true);
   
-  useEffect(() => {
-    const fetchEvaluation = async () => {
-      const result = await evaluateClinicalDecision();
-      setEvaluation(result);
+  // Generation states
+  const [loading, setLoading] = useState(false);
+  const [generated, setGenerated] = useState(false);
+  const [showRecommendation, setShowRecommendation] = useState(false);
+  const [showConcerns, setShowConcerns] = useState(false);
+  const [showMissing, setShowMissing] = useState(false);
+  const [showLumen, setShowLumen] = useState(false);
+  const [lumenLoading, setLumenLoading] = useState(false);
+  const [showGovernance, setShowGovernance] = useState(false);
+  
+  const handleGenerate = useCallback(async () => {
+    setLoading(true);
+    
+    setTimeout(async () => {
       setLoading(false);
-    };
-    fetchEvaluation();
+      setGenerated(true);
+      setShowRecommendation(true);
+      
+      // Left side: concerns stagger
+      setTimeout(() => setShowConcerns(true), 600);
+      setTimeout(() => setShowMissing(true), 1200);
+      
+      // Right side: LUMEN kicks in
+      setTimeout(async () => {
+        setShowLumen(true);
+        setLumenLoading(true);
+        const result = await evaluateClinicalDecision();
+        setEvaluation(result);
+        setLumenLoading(false);
+        setTimeout(() => setShowGovernance(true), 800);
+      }, 800);
+    }, 2200);
   }, []);
-  
-  const handleDrag = (e: React.MouseEvent) => {
-    const container = e.currentTarget.parentElement;
-    if (!container) return;
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const percentage = (x / rect.width) * 100;
-    setSplitPosition(Math.max(20, Math.min(80, percentage)));
-  };
   
   return (
     <main className="h-screen flex flex-col overflow-hidden">
@@ -60,7 +76,34 @@ export default function ComparePage() {
           <span className="font-semibold">Oak Valley Regional Medical Centre</span>
         </div>
         <div className="text-center">
-          <span className="text-sm text-gray-300">Drag the handle to compare — same AI, same patient, different governance</span>
+          {!generated ? (
+            <button
+              onClick={handleGenerate}
+              disabled={loading}
+              className={`
+                inline-flex items-center gap-2 px-6 py-2 rounded-lg font-bold text-sm
+                transition-all duration-200
+                ${loading 
+                  ? 'bg-clinical-blue/70 text-white cursor-wait' 
+                  : 'bg-clinical-blue text-white hover:bg-clinical-blue/90 hover:scale-[1.02] active:scale-[0.98]'
+                }
+              `}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Analyzing Patient Data...</span>
+                </>
+              ) : (
+                <>
+                  <Zap className="w-4 h-4" />
+                  <span>Run AI Triage Companion</span>
+                </>
+              )}
+            </button>
+          ) : (
+            <span className="text-sm text-gray-300">Drag the handle to compare — same AI, same patient, different governance</span>
+          )}
         </div>
         <div className="flex items-center gap-4">
           <span className="font-mono text-sm">
@@ -100,15 +143,21 @@ export default function ComparePage() {
               <LabsCard patient={patient} />
               <SofaScoreCard patient={patient} />
               <HistoryCard patient={patient} />
-              <div className="col-span-2">
-                <AIRecommendationCard recommendation={aiRecommendation} />
-              </div>
-              <div className="col-span-2">
-                <ConcernsCard recommendation={aiRecommendation} />
-              </div>
-              <div className="col-span-2">
-                <MissingGovernanceCard recommendation={aiRecommendation} />
-              </div>
+              {showRecommendation && (
+                <div className="col-span-2 animate-fadeIn">
+                  <AIRecommendationCard recommendation={aiRecommendation} />
+                </div>
+              )}
+              {showConcerns && (
+                <div className="col-span-2 animate-fadeIn">
+                  <ConcernsCard recommendation={aiRecommendation} />
+                </div>
+              )}
+              {showMissing && (
+                <div className="col-span-2 animate-fadeIn">
+                  <MissingGovernanceCard recommendation={aiRecommendation} />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -169,27 +218,35 @@ export default function ComparePage() {
               <LabsCard patient={patient} />
               <SofaScoreCard patient={patient} />
               <HistoryCard patient={patient} />
-              <div className="col-span-2">
-                <AIRecommendationCard recommendation={aiRecommendation} />
-              </div>
-              <div className="col-span-2">
-                <LumenScoreCard evaluation={evaluation} loading={loading} />
-              </div>
-              <div className="col-span-2">
-                <RiskRadar evaluation={evaluation} />
-              </div>
-              <div className="col-span-2">
-                <PolicyPack evaluation={evaluation} />
-              </div>
-              <div className="col-span-2">
-                <ValidatedConcerns evaluation={evaluation} />
-              </div>
-              <div className="col-span-2">
-                <AuditRecord evaluation={evaluation} />
-              </div>
-              <div className="col-span-2">
-                <GovernanceBanner />
-              </div>
+              {showRecommendation && (
+                <div className="col-span-2 animate-fadeIn">
+                  <AIRecommendationCard recommendation={aiRecommendation} />
+                </div>
+              )}
+              {showLumen && (
+                <div className="col-span-2 animate-fadeIn">
+                  <LumenScoreCard evaluation={evaluation} loading={lumenLoading} />
+                </div>
+              )}
+              {showGovernance && evaluation && (
+                <>
+                  <div className="col-span-2 animate-fadeIn">
+                    <RiskRadar evaluation={evaluation} />
+                  </div>
+                  <div className="col-span-2 animate-fadeIn">
+                    <PolicyPack evaluation={evaluation} />
+                  </div>
+                  <div className="col-span-2 animate-fadeIn">
+                    <ValidatedConcerns evaluation={evaluation} />
+                  </div>
+                  <div className="col-span-2 animate-fadeIn">
+                    <AuditRecord evaluation={evaluation} />
+                  </div>
+                  <div className="col-span-2 animate-fadeIn">
+                    <GovernanceBanner />
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@ export function AIRecommendationCard({ recommendation }: AIRecommendationCardPro
           <Bot className="w-6 h-6 text-clinical-blue" />
         </div>
         <div>
-          <h2 className="font-bold text-clinical-navy">AI Clinical Decision Support</h2>
+          <h2 className="font-bold text-clinical-navy">AI Triage Companion</h2>
           <div className="text-xs text-gray-500">
             {recommendation.model} • {recommendation.timestamp}
           </div>

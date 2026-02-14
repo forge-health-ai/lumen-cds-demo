@@ -24,7 +24,7 @@ export default function LandingPage() {
           </div>
           
           <h1 className="text-5xl font-bold text-white mb-4">
-            Clinical Decision Support
+            AI Triage Companion
             <span className="block text-clinical-teal">With Runtime Governance</span>
           </h1>
           
