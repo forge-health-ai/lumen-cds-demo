@@ -16,28 +16,40 @@ export default function LandingPage() {
       </header>
       
       {/* Hero */}
-      <div className="container mx-auto px-6 py-16 text-center">
+      <div className="container mx-auto px-6 py-12 text-center">
         <div className="mb-8">
           <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full mb-6">
             <Activity className="w-4 h-4" />
             <span className="text-sm">Emergency Department Sepsis Triage Scenario</span>
           </div>
           
-          <h1 className="text-5xl font-bold text-white mb-6">
+          <h1 className="text-5xl font-bold text-white mb-4">
             Clinical Decision Support
             <span className="block text-clinical-teal">With Runtime Governance</span>
           </h1>
           
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-4">
-            See what happens at the API layer — before the AI recommendation reaches your clinician
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-2">
+            A 72-year-old patient presents with septic shock. The AI recommends aggressive treatment.
+            <br />See what happens at the API layer — with and without LUMEN.
           </p>
-          <p className="text-sm text-gray-500 max-w-xl mx-auto mb-12">
+          <p className="text-sm text-gray-500 max-w-xl mx-auto mb-10">
             EHR-agnostic · No Epic/Cerner integration required · Evaluates in &lt;50ms · Audit-ready
           </p>
         </div>
         
+        {/* Architecture Flow — single horizontal line */}
+        <div className="flex items-center justify-center gap-2 mb-10 text-sm flex-wrap">
+          <span className="bg-gray-700/50 border border-gray-600 text-gray-300 px-3 py-1.5 rounded-lg">🏥 Your EHR</span>
+          <span className="text-gray-500">→</span>
+          <span className="bg-clinical-blue/20 border border-clinical-blue/50 text-gray-300 px-3 py-1.5 rounded-lg">🤖 AI Model</span>
+          <span className="text-gray-500">→</span>
+          <span className="bg-clinical-teal/20 border-2 border-clinical-teal text-clinical-teal font-bold px-3 py-1.5 rounded-lg">🛡️ LUMEN SDK <span className="text-xs font-normal text-gray-400">&lt;50ms</span></span>
+          <span className="text-gray-500">→</span>
+          <span className="bg-medical-green/20 border border-medical-green/50 text-gray-300 px-3 py-1.5 rounded-lg">👨‍⚕️ Clinician</span>
+        </div>
+
         {/* Demo Options */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-10">
           {/* Without LUMEN */}
           <Link href="/demo/without-lumen" className="group">
             <div className="bg-gradient-to-b from-medical-red/20 to-medical-red/5 border-2 border-medical-red/50 hover:border-medical-red rounded-xl p-8 transition-all hover:scale-105">
@@ -89,71 +101,11 @@ export default function LandingPage() {
             </div>
           </Link>
         </div>
-        
-        {/* Scenario Info */}
-        {/* Architecture Diagram */}
-        <div className="mt-16 bg-white/5 rounded-xl p-8 max-w-4xl mx-auto mb-8">
-          <h3 className="text-xl font-semibold text-white mb-6 text-center">Where LUMEN Sits</h3>
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            {/* EHR */}
-            <div className="bg-gray-700/50 border border-gray-600 rounded-lg px-5 py-4 text-center min-w-[140px]">
-              <div className="text-2xl mb-1">🏥</div>
-              <div className="text-white font-semibold text-sm">Your EHR</div>
-              <div className="text-gray-400 text-xs">Epic · Cerner · Meditech</div>
-              <div className="text-gray-500 text-xs mt-1">Untouched</div>
-            </div>
-            
-            <div className="text-gray-500 text-xl">→</div>
-            
-            {/* AI Model */}
-            <div className="bg-clinical-blue/20 border border-clinical-blue/50 rounded-lg px-5 py-4 text-center min-w-[140px]">
-              <div className="text-2xl mb-1">🤖</div>
-              <div className="text-white font-semibold text-sm">AI Model</div>
-              <div className="text-gray-400 text-xs">CDS App · Ambient AI</div>
-              <div className="text-gray-500 text-xs mt-1">Produces output</div>
-            </div>
-            
-            <div className="text-gray-500 text-xl">→</div>
-            
-            {/* LUMEN */}
-            <div className="bg-clinical-teal/20 border-2 border-clinical-teal rounded-lg px-5 py-4 text-center min-w-[160px] relative">
-              <div className="absolute -top-2 -right-2 bg-clinical-teal text-white text-xs px-2 py-0.5 rounded-full font-bold">SDK</div>
-              <div className="text-2xl mb-1">🛡️</div>
-              <div className="text-clinical-teal font-bold text-sm">LUMEN</div>
-              <div className="text-gray-400 text-xs">Score · Validate · Document</div>
-              <div className="text-clinical-teal text-xs mt-1 font-semibold">&lt;50ms</div>
-            </div>
-            
-            <div className="text-gray-500 text-xl">→</div>
-            
-            {/* Clinician */}
-            <div className="bg-medical-green/20 border border-medical-green/50 rounded-lg px-5 py-4 text-center min-w-[140px]">
-              <div className="text-2xl mb-1">👨‍⚕️</div>
-              <div className="text-white font-semibold text-sm">Clinician</div>
-              <div className="text-gray-400 text-xs">Governed recommendation</div>
-              <div className="text-medical-green text-xs mt-1 font-semibold">Defensible record</div>
-            </div>
-          </div>
-          <p className="text-center text-gray-500 text-xs mt-4">LUMEN is embedded by the CDS vendor — the hospital&apos;s EHR and clinician workflow stay unchanged</p>
-        </div>
 
-        <div className="bg-white/5 rounded-xl p-8 max-w-3xl mx-auto">
-          <h3 className="text-xl font-semibold text-white mb-4">Demo Scenario</h3>
-          <p className="text-gray-300 mb-4">
-            <strong className="text-clinical-teal">Emergency Department Sepsis Triage</strong> — 
-            A 72-year-old patient presents with altered mental status, fever, and hypotension. 
-            The AI recommends aggressive treatment. Should the clinician trust it?
-          </p>
-          <div className="border-t border-white/10 pt-4 mt-4">
-            <h4 className="text-sm font-semibold text-gray-400 mb-2">Where LUMEN sits in the architecture</h4>
-            <p className="text-sm text-gray-400">
-              LUMEN is <strong className="text-gray-300">not</strong> a CDS system and does <strong className="text-gray-300">not</strong> integrate with your EHR. 
-              It operates at the <strong className="text-clinical-teal">API middleware layer</strong> — intercepting AI model output, 
-              scoring it against regulatory and clinical safety rules, and returning a governance-validated result. 
-              Your EHR stays untouched — Epic, Cerner, Meditech, whatever you run. Your clinician&apos;s workflow doesn&apos;t change.
-            </p>
-          </div>
-        </div>
+        {/* One-liner positioning */}
+        <p className="text-xs text-gray-500 max-w-2xl mx-auto">
+          LUMEN is not a CDS system. It&apos;s an API middleware SDK embedded by the CDS vendor — your EHR and clinician workflow stay unchanged.
+        </p>
       </div>
       
       {/* Footer Info */}
