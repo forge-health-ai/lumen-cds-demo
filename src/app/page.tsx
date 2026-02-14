@@ -28,11 +28,20 @@ export default function LandingPage() {
             <span className="block text-clinical-teal">With Runtime Governance</span>
           </h1>
           
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-2">
-            A 72-year-old patient presents with septic shock. The AI recommends aggressive treatment.
-            <br />See what happens at the API layer — with and without LUMEN.
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-6">
+            See what happens at the API layer — before the AI recommendation reaches your clinician.
           </p>
-          <p className="text-sm text-gray-500 max-w-xl mx-auto mb-10">
+          
+          {/* Use Case Callout */}
+          <div className="inline-block bg-white/5 border border-white/10 rounded-lg px-6 py-4 mb-6 max-w-2xl">
+            <div className="text-xs font-bold text-clinical-teal uppercase tracking-widest mb-2">Use Case</div>
+            <p className="text-gray-300 text-sm">
+              A 72-year-old patient presents to the ED with altered mental status, fever, and hypotension. 
+              SOFA score: 10. The AI recommends an aggressive sepsis bundle. Should the clinician trust it?
+            </p>
+          </div>
+
+          <p className="text-xs text-gray-500 max-w-xl mx-auto mb-10">
             EHR-agnostic · No Epic/Cerner integration required · Evaluates in &lt;50ms · Audit-ready
           </p>
         </div>
