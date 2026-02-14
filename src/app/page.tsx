@@ -104,7 +104,7 @@ export default function LandingPage() {
               LUMEN is <strong className="text-gray-300">not</strong> a CDS system and does <strong className="text-gray-300">not</strong> integrate with your EHR. 
               It operates at the <strong className="text-clinical-teal">API middleware layer</strong> — intercepting AI model output, 
               scoring it against regulatory and clinical safety rules, and returning a governance-validated result. 
-              Your Epic/Cerner instance stays untouched. Your clinician&apos;s workflow doesn&apos;t change.
+              Your EHR stays untouched — Epic, Cerner, Meditech, whatever you run. Your clinician&apos;s workflow doesn&apos;t change.
             </p>
           </div>
         </div>
