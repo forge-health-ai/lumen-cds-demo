@@ -8,7 +8,7 @@ export default function LandingPage() {
       {/* Header */}
       <header className="px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <Shield className="w-8 h-8 text-clinical-teal" />
+          <img src="/lumen-aperture.png" alt="LUMEN" className="w-8 h-8" />
           <span className="text-white font-bold text-xl">LUMEN CDS Demo</span>
         </div>
         <div className="bg-clinical-teal/20 text-clinical-teal px-3 py-1 rounded-full text-sm">

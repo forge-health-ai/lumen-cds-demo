@@ -4,6 +4,11 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'LUMEN CDS Demo - Clinical Decision Support with Runtime Governance',
   description: 'Demonstration of AI-assisted clinical decision support with and without LUMEN SDK runtime governance',
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/lumen-aperture.png',
+  },
 };
 
 export default function RootLayout({
