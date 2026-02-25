@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "pharma-claims-demo.forgehealth.ai"
+        }
+      ],
+      "destination": "/demo/pharma",
+      "permanent": false
+    }
+  ]
+}
