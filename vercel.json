@@ -1,5 +1,5 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/",
       "has": [
@@ -8,8 +8,37 @@
           "value": "pharma-claims-demo.forgehealth.ai"
         }
       ],
-      "destination": "/demo/pharma",
-      "permanent": false
+      "destination": "/demo/pharma"
+    },
+    {
+      "source": "/without",
+      "has": [
+        {
+          "type": "host",
+          "value": "pharma-claims-demo.forgehealth.ai"
+        }
+      ],
+      "destination": "/demo/pharma/without"
+    },
+    {
+      "source": "/with",
+      "has": [
+        {
+          "type": "host",
+          "value": "pharma-claims-demo.forgehealth.ai"
+        }
+      ],
+      "destination": "/demo/pharma/with"
+    },
+    {
+      "source": "/compare",
+      "has": [
+        {
+          "type": "host",
+          "value": "pharma-claims-demo.forgehealth.ai"
+        }
+      ],
+      "destination": "/demo/pharma/compare"
     }
   ]
 }
