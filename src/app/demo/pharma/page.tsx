@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Shield, AlertTriangle, Scale, ArrowLeft } from 'lucide-react';
+import { Shield, AlertTriangle, Scale } from 'lucide-react';
 import { PharmaArchitectureFlow } from '@/components/PharmaArchitectureFlow';
 
 export default function PharmaLandingPage() {
@@ -7,15 +7,9 @@ export default function PharmaLandingPage() {
     <main className="min-h-screen bg-gradient-to-b from-clinical-navy to-clinical-navy-light">
       {/* Header */}
       <header className="px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-1 text-slate-400 hover:text-white transition-colors text-sm">
-            <ArrowLeft className="w-4 h-4" />
-            Back
-          </Link>
-          <div className="flex items-center gap-2">
-            <img src="/lumen-aperture.png" alt="LUMEN" className="w-8 h-8" />
-            <span className="text-white font-bold text-xl">LUMEN Pharma Demo</span>
-          </div>
+        <div className="flex items-center gap-2">
+          <img src="/lumen-aperture.png" alt="LUMEN" className="w-8 h-8" />
+          <span className="text-white font-bold text-xl">LUMEN Pharma Demo</span>
         </div>
         <div className="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-sm">
           @forgehealth/lumen-sdk
